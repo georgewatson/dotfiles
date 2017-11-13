@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/usr/lib/ruby/vendor_ruby/uoyits/package'
+let g:netrw_dirhist_2='/usr/userfs/g/gw639/.config/terminator'
+let g:netrw_dirhist_3='/software/vivaldi'
