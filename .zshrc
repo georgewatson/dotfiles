@@ -29,6 +29,7 @@ POWERLEVEL9K_VI_COMMAND_MODE_STRING="NOR"
 POWERLEVEL9K_VCS_GIT_ICON=""
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uf113"
 POWERLEVEL9K_SHOW_CHANGESET="true"
+POWERLEVEL9k_BACKGROUND_JOBS_ICON=""
 POWERLEVEL9K_VCS_GIT_HOOKS=(git-untracked git-aheadbehind git-stash git-remotebranch vcs-detect-changes git-tagname)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -69,6 +70,7 @@ POWERLEVEL9K_HISTORY_FOREGROUND="gray"
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="clear"
 POWERLEVEL9K_VI_MODE_COMMAND_BACKGROUND="clear"
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="clear"
+POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND="clear"
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -92,7 +94,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -114,7 +116,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history git git-flow taskwarrior rsync zsh-syntax-highlighting vi-mode)
+plugins=(history git git-flow taskwarrior rsync zsh-syntax-highlighting vi-mode extract)
 
 source $ZSH/oh-my-zsh.sh
 
