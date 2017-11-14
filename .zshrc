@@ -272,3 +272,5 @@ zle -N zle-line-finish
 export X3DNA='/software/x3dna-v2.3'
 export PATH='/software/x3dna-v2.3/bin':$PATH
 
+# Custom continuation prompt
+export PS2="%F{blue}       %F{normal}"
