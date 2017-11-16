@@ -274,3 +274,9 @@ export PATH='/software/x3dna-v2.3/bin':$PATH
 
 # Custom continuation prompt
 export PS2="%F{blue}       %F{normal}"
+
+# Shorter aliases of already-aliased rsync-copy and rsync-move
+# Should work as drop-in replacements for cp and mv
+# Not rcp & rmv because it's to easy to typo rmv as rm
+alias cpr=rsync-copy # Use this one all the time; it's better
+alias mvr=rsync-move # Use only when copying between partitions
