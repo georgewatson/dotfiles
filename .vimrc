@@ -236,6 +236,37 @@ if has("autocmd")
     au BufNewFile,BufRead *.in set filetype=fortran
 endif
 
+"nnoremap <Leader>o :tabe<space>
+"nnoremap <Leader>e :tabe<space>
+nnoremap <Leader>o :edit<space>
+nnoremap <Leader>e :edit<space>
+nnoremap gt :bn<CR>
+nnoremap gT :bp<CR>
+nnoremap <Leader>g :bu<space>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader><Leader> :w<CR>
+nnoremap <Leader>x :bd<CR>
+nnoremap <Leader>q :q<CR>
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <Leader>v V
+nmap <Leader>b <c-v>
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+map q: :q
+:set hlsearch
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local

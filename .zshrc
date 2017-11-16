@@ -280,3 +280,11 @@ export PS2="%F{blue}       %F{normal}"
 # Not rcp & rmv because it's to easy to typo rmv as rm
 alias cpr=rsync-copy # Use this one all the time; it's better
 alias mvr=rsync-move # Use only when copying between partitions
+
+# Allow fancier glob syntax using #, ~, and ^
+# #: Matches zero or more of previous pattern (x# matches a, x, and xx)
+# ##: Matches one or more of previous pattern (x## matches x and xx)
+# ^: Negation (e.g. ^*.txt matches everything not ending .txt)
+# ~: AND NOT (e.g. *.pdb~*.min.pdb matches foo.pdb but not foo.min.pdb)
+# Also allows fuzzy matching (e.g. (#a1)foo matches boo and ofo)
+setopt extended_glob
