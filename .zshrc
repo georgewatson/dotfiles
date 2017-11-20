@@ -94,7 +94,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -288,3 +288,6 @@ alias mvr=rsync-move # Use only when copying between partitions
 # ~: AND NOT (e.g. *.pdb~*.min.pdb matches foo.pdb but not foo.min.pdb)
 # Also allows fuzzy matching (e.g. (#a1)foo matches boo and ofo)
 setopt extended_glob
+
+# Standard error in red; requires git:sickill/stderred
+export LD_PRELOAD="/usr/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
