@@ -195,9 +195,6 @@ else
    export LD_LIBRARY_PATH="${AMBERHOME}/lib:${LD_LIBRARY_PATH}"
 fi
 
-#unsetopt share_history
-#setopt no_share_history
-
 # Source rupa/z
 . ~/scripts/z.sh
 
@@ -207,22 +204,22 @@ source ~/.fonts/*.sh
 # Solarized colours in ls
 eval `dircolors ~/.dircolors`
 
-# History stuff
-## Command history configuration
-if [ -z "$HISTFILE" ]; then
-    HISTFILE=$HOME/.zsh_history
-fi
-
-HISTSIZE=10000
-SAVEHIST=10000
-
-# Show history
-case $HIST_STAMPS in
-  "mm/dd/yyyy") alias history='fc -fl 1' ;;
-  "dd.mm.yyyy") alias history='fc -El 1' ;;
-  "yyyy-mm-dd") alias history='fc -il 1' ;;
-  *) alias history='fc -l 1' ;;
-esac
+## History stuff
+### Command history configuration
+#if [ -z "$HISTFILE" ]; then
+#    HISTFILE=$HOME/.zsh_history
+#fi
+#
+#HISTSIZE=10000
+#SAVEHIST=10000
+#
+## Show history
+#case $HIST_STAMPS in
+#  "mm/dd/yyyy") alias history='fc -fl 1' ;;
+#  "dd.mm.yyyy") alias history='fc -El 1' ;;
+#  "yyyy-mm-dd") alias history='fc -il 1' ;;
+#  *) alias history='fc -l 1' ;;
+#esac
 
 setopt append_history
 setopt extended_history
@@ -231,7 +228,9 @@ setopt hist_ignore_dups # ignore duplication command history list
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
-setopt share_history # share command history data
+
+unsetopt share_history
+setopt no_share_history
 
 # Ugly hack to fix history number in prompt
 # TODO: This mildly breaks command_execution_time; fix that
@@ -240,10 +239,10 @@ setopt share_history # share command history data
 #     HISTORYSIZE=$(grep -c '^:' $HISTFILE)
 #     "$1_prompt_segment" "$0" "$2" "244" "$DEFAULT_COLOR" "$(($HISTORYSIZE + 1))"
 # }
-count_hist () {
-    HISTORYSIZE=$(grep -c '^:' $HISTFILE)
-    POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 $(($HISTORYSIZE + 1))%F{default} "
-}
+#count_hist () {
+#    HISTORYSIZE=$(grep -c '^:' $HISTFILE)
+#    POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 $(($HISTORYSIZE + 1))%F{default} "
+#}
 
 #function zle-line-init {
 #  count_hist
@@ -255,18 +254,18 @@ count_hist () {
 #  zle -R
 #}
 
-function zle-line-finish {
-  count_hist
-  powerlevel9k_prepare_prompts
-  if (( ${+terminfo[rmkx]} )); then
-    printf '%s' ${terminfo[rmkx]}
-  fi
-  zle reset-prompt
-  zle -R
-}
-
-#zle -N zle-line-init
-zle -N zle-line-finish
+#function zle-line-finish {
+#  count_hist
+#  powerlevel9k_prepare_prompts
+#  if (( ${+terminfo[rmkx]} )); then
+#    printf '%s' ${terminfo[rmkx]}
+#  fi
+#  zle reset-prompt
+#  zle -R
+#}
+#
+##zle -N zle-line-init
+#zle -N zle-line-finish
 
 # For 3DNA
 export X3DNA='/software/x3dna-v2.3'
