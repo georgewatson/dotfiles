@@ -97,7 +97,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -169,7 +169,8 @@ TIMEFMT=$'%J\nReal\t%*E\nUser\t%*U\nSystem\t%*S\n%P CPU'
 DEFAULT_USER="gw639"
 
 setopt autocd
-setopt histignorealldups
+#setopt histignorealldups
+unsetopt histignorealldups
 setopt promptsubst
 
 export EDITOR=vim
@@ -290,3 +291,6 @@ setopt extended_glob
 
 # Standard error in red; requires git:sickill/stderred
 export LD_PRELOAD="/usr/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+
+# Add custom scripts to END of $PATH
+export PATH=$PATH:'/usr/userfs/g/gw639/myscripts'

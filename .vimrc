@@ -32,6 +32,12 @@ Plugin 'airblade/vim-gitgutter'
 " Git stuff
 Plugin 'tpope/vim-fugitive'
 
+" Hard mode
+Plugin 'wikitopian/hardmode'
+
+" Show marks
+Plugin 'jacquesbh/vim-showmarks'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -266,6 +272,16 @@ set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
+
+" Turn hard mode on by default
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" Use <leader>h to toggle
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+
+autocmd VimEnter,BufNewFile,BufReadPost * silent! DoShowMarks!
+
+" Lower update time for more frequent updating of signs etc.
+set updatetime=750
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
