@@ -1,9 +1,9 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/usr/lib/ruby/vendor_ruby/uoyits/package'
-let g:netrw_dirhist_2='/usr/userfs/g/gw639/.config/terminator'
-let g:netrw_dirhist_3='/software/vivaldi'
-let g:netrw_dirhist_4='/scratch2/MPhys/Analysis'
-let g:netrw_dirhist_5='/usr/userfs/g/gw639/dotfiles/.vim/bundle/syntastic/syntax_checkers'
-let g:netrw_dirhist_6='/scratch1/MinTemplate'
-let g:netrw_dirhist_7='/usr/userfs/g/gw639/dotfiles'
+let g:netrw_dirhist_1='/scratch1/IHF/29/1/analysis'
+let g:netrw_dirhist_2='/scratch1/HUTemplate'
+let g:netrw_dirhist_3='/home/userfs/g/gw639/gnuplot-palettes'
+let g:netrw_dirhist_4='/scratch1/IHF/32/1/analysis'
+let g:netrw_dirhist_5='/scratch1/MinTemplate'
+let g:netrw_dirhist_6='/home/userfs/g/gw639/web'
+let g:netrw_dirhist_7='/home/userfs/g/gw639/deoxyribose'

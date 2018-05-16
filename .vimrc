@@ -13,6 +13,13 @@ Plugin 'VundleVim/Vundle.vim'
 " LaTeX-suite
 Plugin 'vim-latex/vim-latex'
 
+" Additional use of conceal in TeX
+Plugin 'KeitaNakamura/tex-conceal.vim'
+" And in Python
+Plugin 'ehamberg/vim-cute-python'
+" Haskell
+Plugin 'Twinside/vim-haskellConceal'
+
 " Airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -37,6 +44,9 @@ Plugin 'wikitopian/hardmode'
 
 " Show marks
 Plugin 'jacquesbh/vim-showmarks'
+
+" Indent guides
+" Plugin 'thaerkh/vim-indentguides'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -100,7 +110,10 @@ set shiftround
 set expandtab
 set softtabstop=4
 set smarttab
+set smartindent
 set autoindent
+" Don't expand tabs in makefiles
+autocmd FileType make setlocal noexpandtab
 
 " Display extra whitespace
 set list listchars=tab:»\ ,trail:·,nbsp:␣,extends:>,precedes:<
@@ -209,6 +222,12 @@ filetype indent on
 let g:tex_flavor='latex'
 
 " Set up Airline
+" Additional concealment
+set conceallevel=2
+let g:tex_conceal="abdgm"
+" But not on the line with the cursor
+set concealcursor="nc"
+
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#tabline#enabled = 1
@@ -274,7 +293,7 @@ set laststatus=2
 set t_Co=256
 
 " Turn hard mode on by default
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 " Use <leader>h to toggle
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
@@ -282,6 +301,24 @@ autocmd VimEnter,BufNewFile,BufReadPost * silent! DoShowMarks!
 
 " Lower update time for more frequent updating of signs etc.
 set updatetime=750
+
+"let g:syntastic_python_python_exe = 'python3'
+"let g:syntastic_python_flake8_exec = 'python3'
+"let g:syntastic_python_flake8_exec = 'flake8-py3'
+
+" Highlight the current line
+set cursorline
+" and keep it mostly centred
+set so=10
+
+" Use hybrid line numbers
+set number relativenumber
+" But show absolute numbers in insert mode & when the buffer loses focus
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

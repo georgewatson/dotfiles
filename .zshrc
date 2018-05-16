@@ -3,7 +3,7 @@
 export TERM="xterm-256color"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/userfs/g/gw639/.oh-my-zsh
+export ZSH=/home/userfs/g/gw639/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -150,12 +150,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-# Vi keyvindings
+# Vi keybindings
 bindkey -v
 export KEYTIMEOUT=1
 
 # But keep some of the useful emacs bindings
 bindkey "^R" history-incremental-search-backward
+bindkey -M vicmd "/" history-incremental-search-backward
 # If you really want push-line, do this
 # But you think you're a vim wizard so dd and P are better
 stty -ixon
@@ -163,6 +164,11 @@ bindkey "^q" push-line
 
 # Expand ! history on space
 bindkey ' ' magic-space
+
+# Hit e in command mode to edit in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd e edit-command-line
 
 TIMEFMT=$'%J\nReal\t%*E\nUser\t%*U\nSystem\t%*S\n%P CPU'
 
@@ -290,7 +296,21 @@ alias mvr=rsync-move # Use only when copying between partitions
 setopt extended_glob
 
 # Standard error in red; requires git:sickill/stderred
-export LD_PRELOAD="/usr/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+export LD_PRELOAD="/home/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 
 # Add custom scripts to END of $PATH
-export PATH=$PATH:'/usr/userfs/g/gw639/myscripts'
+export PATH=$PATH:'/home/userfs/g/gw639/myscripts'
+
+# Disable hostname completion
+zstyle ':completion:*' hosts off
+
+alias qjobs="watch 'qstat | cut -c-$COLUMNS'"
+
+show()
+{
+    pygmentize $1 2>/dev/null || cat $1
+}
+# Copy tab completion from cat
+compdef show=cat
+
+source ~/.zshrc.local
