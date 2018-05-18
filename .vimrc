@@ -15,10 +15,11 @@ Plugin 'vim-latex/vim-latex'
 
 " Additional use of conceal in TeX
 Plugin 'KeitaNakamura/tex-conceal.vim'
-" And in Python
-Plugin 'ehamberg/vim-cute-python'
-" Haskell
-Plugin 'Twinside/vim-haskellConceal'
+" And in Python (unnecessary due to custom file ~/.vim/after/syntax/python.vim)
+"Plugin 'ehamberg/vim-cute-python'
+" Haskell (mostly replicated by FiraCode font ligatures;
+" non-duplicated bits in " ~/.vim/after/syntax/haskell.vim)
+"Plugin 'Twinside/vim-haskellConceal'
 
 " Airline
 Plugin 'vim-airline/vim-airline'
@@ -28,7 +29,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 
 " Syntax checking
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
+" Or asynchronous
+Plugin 'w0rp/ale'
 
 " Devicons
 Plugin 'ryanoasis/vim-devicons'
@@ -47,6 +50,21 @@ Plugin 'jacquesbh/vim-showmarks'
 
 " Indent guides
 " Plugin 'thaerkh/vim-indentguides'
+
+" Multiple cursors
+Plugin 'terryma/vim-multiple-cursors'
+
+" Ack/ag support
+Plugin 'mileszs/ack.vim'
+
+" Define indentation levels as vim objects
+Plugin 'michaeljsmith/vim-indent-object'
+
+" CtrlP interface for opening files
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Tmuxline
+Plugin 'edkolev/tmuxline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,6 +140,7 @@ set list listchars=tab:»\ ,trail:·,nbsp:␣,extends:>,precedes:<
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
+  let g:ackprg= 'ag --vimgrep'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
@@ -185,12 +204,6 @@ let g:html_indent_tags = 'li\|p'
 set splitbelow
 set splitright
 
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
@@ -199,6 +212,7 @@ let g:syntastic_eruby_ruby_quiet_messages =
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+set spelllang=en
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
@@ -221,27 +235,29 @@ filetype indent on
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
-" Set up Airline
 " Additional concealment
 set conceallevel=2
 let g:tex_conceal="abdgm"
 " But not on the line with the cursor
 set concealcursor="nc"
 
+" Set up Airline
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+" Let airline know about ale
+let g:airline#extensions#ale#enabled = 1
 
-" Set up Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"" Set up Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " Colour scheme
 syntax enable
@@ -272,19 +288,28 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader><Leader> :w<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
-vmap <Leader>y "+y
+
+" Copy and paste to/from system clipboards
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
+
 vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
 nmap <Leader>v V
 nmap <Leader>b <c-v>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 map q: :q
-:set hlsearch
+
+" Highlight search results
+set hlsearch
+" But clear the highlights easily
+map <silent> <leader><cr> :noh<cr>
+
+" Allow switching buffers without writing changes
+set hidden
 
 " Always show statusline
 set laststatus=2
@@ -309,7 +334,7 @@ set updatetime=750
 " Highlight the current line
 set cursorline
 " and keep it mostly centred
-set so=10
+set so=999
 
 " Use hybrid line numbers
 set number relativenumber
@@ -319,6 +344,16 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Use Vim airline to define tmux statusline
+let g:airline#extensions#tmuxline#enabled = 1
+let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

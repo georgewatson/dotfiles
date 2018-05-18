@@ -12,7 +12,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
@@ -26,6 +26,6 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # Custom stuff starts here
-export AMBERHOME=/software/Ambertools16/amber16
-export PATH="$PATH:/software/bin"
-export PATH=~/.npm-global/bin:$PATH
+export AMBERHOME="/software/Ambertools16/amber16"
+export PATH="~/.npm-global/bin:$PATH"
+export PATH="/software/bin:$PATH"

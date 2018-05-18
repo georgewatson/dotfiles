@@ -203,7 +203,7 @@ else
 fi
 
 # Source rupa/z
-. ~/scripts/z.sh
+#. ~/scripts/z.sh
 
 # Font maps
 source ~/.fonts/*.sh
@@ -275,11 +275,11 @@ setopt no_share_history
 #zle -N zle-line-finish
 
 # For 3DNA
-export X3DNA='/software/x3dna-v2.3'
-export PATH='/software/x3dna-v2.3/bin':$PATH
+export X3DNA="/software/x3dna-v2.3"
+export PATH="/software/x3dna-v2.3/bin:$PATH"
 
 # Custom continuation prompt
-export PS2="%F{blue}       %F{normal}"
+export PS2="%F{blue}        %F{normal}"
 
 # Shorter aliases of already-aliased rsync-copy and rsync-move
 # Should work as drop-in replacements for cp and mv
