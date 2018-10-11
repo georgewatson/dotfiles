@@ -27,5 +27,5 @@ fi
 
 # Custom stuff starts here
 export AMBERHOME="/software/Ambertools16/amber16"
-export PATH="~/.npm-global/bin:$PATH"
+export PATH="/home/userfs/g/gw639/.npm-global/bin:$PATH"
 export PATH="/software/bin:$PATH"

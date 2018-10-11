@@ -43,7 +43,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
 " Hard mode
-Plugin 'wikitopian/hardmode'
+"Plugin 'wikitopian/hardmode'
+" OR Hardtime
+Plugin 'takac/vim-hardtime'
 
 " Show marks
 Plugin 'jacquesbh/vim-showmarks'
@@ -65,6 +67,12 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 " Tmuxline
 Plugin 'edkolev/tmuxline.vim'
+
+" View buffers on "/@/C-r
+Plugin 'junegunn/vim-peekaboo'
+
+" Vimwiki
+Plugin 'vimwiki/vimwiki'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -156,8 +164,9 @@ endif
 
 " Make it obvious where 80 characters is
 set textwidth=80
-highlight ColorColumn ctermbg=red ctermfg=white
-call matchadd('ColorColumn', '\%81v', 100)
+let &colorcolumn=join(range(81,999),",")
+autocmd BufEnter * highlight OverLength ctermfg=darkred
+autocmd BufEnter * match OverLength /\%81v.*/
 
 " Numbers
 set number
@@ -179,7 +188,7 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
 " Switch between the last two files
-nnoremap <leader><leader> <c-^>
+"nnoremap <leader><leader> <c-^>
 
 " Get off my lawn
 "nnoremap <Left> :echoe "Use h"<CR>
@@ -248,6 +257,15 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " Let airline know about ale
 let g:airline#extensions#ale#enabled = 1
+
+" Navigate around ale matches easily
+nmap <C-h> <Plug>(ale_previous_wrap)
+nmap <C-l> <Plug>(ale_next_wrap)
+" Nicer gutter symbols for errors and warnings
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '?'
+" Let ale show the loclist
+let g:ale_open_list = 'on_save'
 
 "" Set up Syntastic
 "set statusline+=%#warningmsg#
@@ -319,8 +337,11 @@ set t_Co=256
 
 " Turn hard mode on by default
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-" Use <leader>h to toggle
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+" Turn Hardtime on by default
+"let g:hardtime_default_on = 1
+" Use <leader>h to toggle hard mode (or hardtime)
+"nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+nnoremap <leader>h <Esc>:HardTimeToggle<CR>
 
 autocmd VimEnter,BufNewFile,BufReadPost * silent! DoShowMarks!
 
@@ -330,6 +351,9 @@ set updatetime=750
 "let g:syntastic_python_python_exe = 'python3'
 "let g:syntastic_python_flake8_exec = 'python3'
 "let g:syntastic_python_flake8_exec = 'flake8-py3'
+
+let g:ale_python_flake8_executable = 'python3'
+let g:ale_python_flake8_options = '-m flake8'
 
 " Highlight the current line
 set cursorline
@@ -346,14 +370,35 @@ augroup numbertoggle
 augroup END
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
+
+" Insert new lines without entering insert mode
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
 
 " Use Vim airline to define tmux statusline
 let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
+
+" Assume ambiguous-width characters are single-width
+set ambiwidth=single
+
+" Easily turn conceal off so other people can read my code
+function! ToggleConcealLevel()
+    if &conceallevel == 0
+        setlocal conceallevel=2
+    else
+        setlocal conceallevel=0
+    endif
+endfunction
+
+nnoremap <silent> <leader>c :call ToggleConcealLevel()<CR>
+
+"Remove all trailing whitespace by pressing <leader>w
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

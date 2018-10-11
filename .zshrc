@@ -284,7 +284,7 @@ export PS2="%F{blue}        %F{normal}"
 # Shorter aliases of already-aliased rsync-copy and rsync-move
 # Should work as drop-in replacements for cp and mv
 # Not rcp & rmv because it's to easy to typo rmv as rm
-alias cpr=rsync-copy # Use this one all the time; it's better
+alias cpr="rsync-copy --no-perms -O" # Use this one all the time; it's better
 alias mvr=rsync-move # Use only when copying between partitions
 
 # Allow fancier glob syntax using #, ~, and ^
@@ -297,6 +297,9 @@ setopt extended_glob
 
 # Standard error in red; requires git:sickill/stderred
 export LD_PRELOAD="/home/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+
+# Add gem executables to path
+export PATH=$PATH:'/home/userfs/g/gw639/.gem/ruby/2.3.0/bin'
 
 # Add custom scripts to END of $PATH
 export PATH=$PATH:'/home/userfs/g/gw639/myscripts'
@@ -312,5 +315,10 @@ show()
 }
 # Copy tab completion from cat
 compdef show=cat
+
+alias tmux="tmux -2"
+alias irssi='TERM=screen-256color irssi'
+
+alias gcasm='git commit -a -S -m'
 
 source ~/.zshrc.local
