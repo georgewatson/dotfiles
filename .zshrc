@@ -3,7 +3,8 @@
 export TERM="xterm-256color"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/userfs/g/gw639/.oh-my-zsh
+#export ZSH=/home/userfs/g/gw639/.oh-my-zsh
+export ZSH=/home/george/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -40,7 +41,7 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%F{white}"
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
 
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=' '
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
 #POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="clear"
@@ -172,7 +173,7 @@ bindkey -M vicmd e edit-command-line
 
 TIMEFMT=$'%J\nReal\t%*E\nUser\t%*U\nSystem\t%*S\n%P CPU'
 
-DEFAULT_USER="gw639"
+DEFAULT_USER="george"
 
 setopt autocd
 #setopt histignorealldups
@@ -206,7 +207,7 @@ fi
 #. ~/scripts/z.sh
 
 # Font maps
-source ~/.fonts/*.sh
+#source ~/.fonts/*.sh
 
 # Solarized colours in ls
 eval `dircolors ~/.dircolors`
@@ -235,9 +236,7 @@ setopt hist_ignore_dups # ignore duplication command history list
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
-
-unsetopt share_history
-setopt no_share_history
+setopt share_history
 
 # Ugly hack to fix history number in prompt
 # TODO: This mildly breaks command_execution_time; fix that
@@ -275,8 +274,8 @@ setopt no_share_history
 #zle -N zle-line-finish
 
 # For 3DNA
-export X3DNA="/software/x3dna-v2.3"
-export PATH="/software/x3dna-v2.3/bin:$PATH"
+#export X3DNA="/software/x3dna-v2.3"
+#export PATH="/software/x3dna-v2.3/bin:$PATH"
 
 # Custom continuation prompt
 export PS2="%F{blue}        %F{normal}"
@@ -296,7 +295,8 @@ alias mvr=rsync-move # Use only when copying between partitions
 setopt extended_glob
 
 # Standard error in red; requires git:sickill/stderred
-export LD_PRELOAD="/home/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+#export LD_PRELOAD="/home/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+# TODO: Get stderred working
 
 # Add gem executables to path
 export PATH=$PATH:'/home/userfs/g/gw639/.gem/ruby/2.3.0/bin'
@@ -320,5 +320,9 @@ alias tmux="tmux -2"
 alias irssi='TERM=screen-256color irssi'
 
 alias gcasm='git commit -a -S -m'
+
+# Make connecting to the university VPN easier
+alias yorkvpn='/usr/local/pulse/pulsesvc -h webvpn.york.ac.uk -u gw639 -r york_users_realm'
+alias vpnstatus='/usr/local/pulse/pulsesvc -S'
 
 source ~/.zshrc.local

@@ -72,7 +72,11 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'junegunn/vim-peekaboo'
 
 " Vimwiki
-Plugin 'vimwiki/vimwiki'
+"Plugin 'vimwiki/vimwiki'
+
+" Pandoc
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -382,6 +386,15 @@ nmap <CR> o<Esc>
 " Use Vim airline to define tmux statusline
 let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
+
+" Pandoc settings
+" Generate PDF on save
+let g:pandoc#command#autoexec_on_writes = 1
+let g:pandoc#command#autoexec_command = "Pandoc pdf"
+" Don't fold until level 3
+let g:pandoc#folding#level = 2
+" Disable foldcolumn
+let g:pandoc#folding#fdc = 0
 
 " Assume ambiguous-width characters are single-width
 set ambiwidth=single
