@@ -225,7 +225,7 @@ let g:syntastic_eruby_ruby_quiet_messages =
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spelllang=en
+set spelllang=en_gb
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
@@ -412,6 +412,9 @@ nnoremap <silent> <leader>c :call ToggleConcealLevel()<CR>
 
 "Remove all trailing whitespace by pressing <leader>w
 nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" Highlight misspelt words in red
+hi SpellBad cterm=underline ctermfg=red
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

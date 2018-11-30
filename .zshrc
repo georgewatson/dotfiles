@@ -28,6 +28,7 @@ POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
 POWERLEVEL9K_VI_INSERT_MODE_STRING="INS"
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="NOR"
 POWERLEVEL9K_VCS_GIT_ICON=""
+# POWERLEVEL9K_VCS_GIT_ICON=""
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uf113"
 POWERLEVEL9K_SHOW_CHANGESET="true"
 POWERLEVEL9k_BACKGROUND_JOBS_ICON=""
@@ -183,25 +184,25 @@ setopt promptsubst
 export EDITOR=vim
 export BROWSER=vivaldi
 
-alias viv="vivaldi </dev/null >/dev/null 2>&1 & disown"
-alias kraken="gitkraken </dev/null >/dev/null 2>&1 & disown"
-alias tasks="while true; do clear; task next; sleep 10; done"
+#alias viv="vivaldi </dev/null >/dev/null 2>&1 & disown"
+#alias kraken="gitkraken </dev/null >/dev/null 2>&1 & disown"
+#alias tasks="while true; do clear; task next; sleep 10; done"
 
-export AMBERHOME="/software/Ambertools16/amber16"
-
-# From $AMBERHOME/amber.sh
-export PATH="${AMBERHOME}/bin:${PATH}"
-# Add location of Amber Python modules to default Python search path
-if [ -z "$PYTHONPATH" ]; then
-    export PYTHONPATH="${AMBERHOME}/lib/python2.7/site-packages"
-else
-    export PYTHONPATH="${AMBERHOME}/lib/python2.7/site-packages:${PYTHONPATH}"
-fi
-if [ -z "${LD_LIBRARY_PATH}" ]; then
-   export LD_LIBRARY_PATH="${AMBERHOME}/lib"
-else
-   export LD_LIBRARY_PATH="${AMBERHOME}/lib:${LD_LIBRARY_PATH}"
-fi
+#export AMBERHOME="/software/Ambertools16/amber16"
+#
+## From $AMBERHOME/amber.sh
+#export PATH="${AMBERHOME}/bin:${PATH}"
+## Add location of Amber Python modules to default Python search path
+#if [ -z "$PYTHONPATH" ]; then
+#    export PYTHONPATH="${AMBERHOME}/lib/python2.7/site-packages"
+#else
+#    export PYTHONPATH="${AMBERHOME}/lib/python2.7/site-packages:${PYTHONPATH}"
+#fi
+#if [ -z "${LD_LIBRARY_PATH}" ]; then
+#   export LD_LIBRARY_PATH="${AMBERHOME}/lib"
+#else
+#   export LD_LIBRARY_PATH="${AMBERHOME}/lib:${LD_LIBRARY_PATH}"
+#fi
 
 # Source rupa/z
 #. ~/scripts/z.sh
@@ -324,5 +325,13 @@ alias gcasm='git commit -a -S -m'
 # Make connecting to the university VPN easier
 alias yorkvpn='/usr/local/pulse/pulsesvc -h webvpn.york.ac.uk -u gw639 -r york_users_realm'
 alias vpnstatus='/usr/local/pulse/pulsesvc -S'
+
+# thefuck
+eval $(thefuck --alias)
+
+# Open rtv content in a new browser window
+export RTV_BROWSER='vivaldi --new-window'
+
+alias dropdown='nohup konsole -name __dropdown &'
 
 source ~/.zshrc.local

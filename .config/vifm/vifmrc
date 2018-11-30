@@ -450,7 +450,7 @@ nnoremap <f8> :delete<cr>
 
 " Use ag (the silver searcher) instead of grep
 "
-" set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 
 " Add additional place to look for executables
 "
@@ -459,3 +459,10 @@ nnoremap <f8> :delete<cr>
 " Block particular shortcut
 "
 " nnoremap <left> <nop>
+
+" Line numbering
+set number
+set relativenumber
+
+" Show doftiles
+set dotfiles
