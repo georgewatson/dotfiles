@@ -20,6 +20,8 @@ Plugin 'KeitaNakamura/tex-conceal.vim'
 " Haskell (mostly replicated by FiraCode font ligatures;
 " non-duplicated bits in " ~/.vim/after/syntax/haskell.vim)
 "Plugin 'Twinside/vim-haskellConceal'
+" Even more Haskell
+Plugin 'enomsg/vim-haskellConcealPlus'
 
 " Airline
 Plugin 'vim-airline/vim-airline'
@@ -358,6 +360,8 @@ set updatetime=750
 
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
+let g:ale_python_pylint_executable = 'python3'
+let g:ale_python_pylint_options = '-m pylint'
 
 " Highlight the current line
 set cursorline
