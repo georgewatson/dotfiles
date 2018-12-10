@@ -34,7 +34,7 @@ syntax match fNiceOperator "\<else\%( \)\?if\>" conceal cchar=▹
 "syntax keyword fNiceOperator exit conceal cchar=↯
 syntax keyword fNiceOperator pure conceal cchar=•
 syntax keyword fNiceUnitheader function conceal cchar=⁕
-syntax keyword fNiceUnitHeader subroutine conceal cchar=⮚
+syntax keyword fNiceUnitHeader subroutine conceal cchar=★
 syntax keyword fNiceUnitHeader module conceal cchar=§
 
 syntax keyword fNiceFunction str conceal cchar=`

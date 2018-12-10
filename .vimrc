@@ -395,8 +395,8 @@ let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 " Generate PDF on save
 let g:pandoc#command#autoexec_on_writes = 1
 let g:pandoc#command#autoexec_command = "Pandoc pdf"
-" Don't fold until level 3
-let g:pandoc#folding#level = 2
+" Don't fold until level 2
+let g:pandoc#folding#level = 1
 " Disable foldcolumn
 let g:pandoc#folding#fdc = 0
 
@@ -419,6 +419,11 @@ nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Highlight misspelt words in red
 hi SpellBad cterm=underline ctermfg=red
+
+" Light up the caps-lock light on entering insert mode
+:autocmd! InsertEnter * silent! execute ('!xset led 1 led on &')
+" And turn it off on leaving
+:autocmd! InsertLeave * silent! execute ('!xset led 1 led off &')
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

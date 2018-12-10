@@ -149,7 +149,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec ~/.dmenu-i3exit.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -262,6 +263,9 @@ exec --no-startup-id udiskie -s
 exec --no-startup-id autorandr
 # Refresh with Mod+F7
 bindsym $mod+F7 /usr/bin/autorandr --change
+
+# Run redshift to adjust colour temperature
+exec --no-startup-id redshift -l 53.95763:-1.08271
 
 # Set wallpaper
 #exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/solarized_mountains.png
