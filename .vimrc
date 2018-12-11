@@ -394,11 +394,13 @@ let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 " Pandoc settings
 " Generate PDF on save
 let g:pandoc#command#autoexec_on_writes = 1
-let g:pandoc#command#autoexec_command = "Pandoc pdf"
-" Don't fold until level 2
-let g:pandoc#folding#level = 1
+let g:pandoc#command#autoexec_command = "Pandoc pdf --toc --variable geometry:margin=1in"
 " Disable foldcolumn
 let g:pandoc#folding#fdc = 0
+" Text width 80
+let g:pandoc#formatting#textwidth = 80
+let g:pandoc#formatting#smart_autoformat_on_cursor_moved = 1
+let g:pandoc#formatting#mode="hA"
 
 " Assume ambiguous-width characters are single-width
 set ambiwidth=single

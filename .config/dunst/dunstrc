@@ -33,7 +33,7 @@
 
     show_icons = left
     max_icon_size = 128
-    # icon_path = /usr/share/icons/...
+    # icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
 
     # The frequency with wich text that is longer than the notification
     # window allows bounces back and forth.
@@ -127,8 +127,7 @@
     # browser for opening urls in context menu
     browser = /usr/bin/vivaldi
 
-    frame_width = 0
-    frame_color = "#002b36"
+    frame_width = 1
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -151,16 +150,19 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#073642"
     foreground = "#839496"
+    background = "#073642"
+    frame_color = "#839496"
     timeout = 10
 
 [urgency_normal]
-    background = "#268bd2"
-    foreground = "#002b36"
+    foreground = "#268bd2"
+    background = "#073642"
+    frame_color = "#268bd2"
     timeout = 10
 
 [urgency_critical]
-    background = "#dc322f"
-    foreground = "#002b36"
+    foreground = "#dc322f"
+    background = "#073642"
+    frame_color = "#dc322f"
     timeout = 0
