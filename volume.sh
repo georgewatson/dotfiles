@@ -18,7 +18,9 @@ function get_volume {
 }
 
 function is_mute {
-    amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
+    SINK=$(pactl list short | grep RUNNING | sed -e \
+        's,^\([0-9][0-9]*\)[^0-9].*,\1,')
+    pactl list sinks | grep '^[[:space:]]Mute: yes'
 }
 
 function send_notification {
@@ -50,7 +52,7 @@ case $1 in
         # Toggle mute
         amixer -D pulse set Master 1+ toggle > /dev/null
         if is_mute ; then
-            ~/dotfiles/notify-send.sh/notify-send.sh 'Mute' -u normal \
+            ~/dotfiles/notify-send.sh/notify-send.sh 'Volume muted' -u normal \
                 --replace-file=/tmp/volume_notification -a 'pulse' -t 2000
         else
             send_notification
