@@ -138,7 +138,7 @@ bindsym $mod+Shift+equal move scratchpad
 bindsym $mod+equal scratchpad show
 
 # Dropdown terminal using the scratchpad
-for_window [instance="__dropdown"] floating enable, resize set 1200 300, move position 360 -1, move scratchpad
+for_window [instance="__dropdown"] floating enable, resize set 100 ppt 200, move position 0 -1, move scratchpad
 bindsym $mod+semicolon exec i3-msg [instance='__dropdown'] scratchpad show
 exec i3-sensible-terminal --profile Dropdown -name __dropdown
 # Force launching a new dropdown instance in case the old one is closed
@@ -270,6 +270,9 @@ bindsym $mod+F7 /usr/bin/autorandr --change
 
 # Run redshift to adjust colour temperature
 exec --no-startup-id redshift -l 53.95763:-1.08271
+
+# Run mopidy
+exec --no-startup-id mopidy
 
 # Set wallpaper
 #exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/solarized_mountains.png

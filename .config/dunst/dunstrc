@@ -32,8 +32,9 @@
     alignment = left
 
     show_icons = left
+    icon_position = left
     max_icon_size = 16
-    # icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
 
     # The frequency with wich text that is longer than the notification
     # window allows bounces back and forth.

@@ -237,7 +237,10 @@ setopt hist_ignore_dups # ignore duplication command history list
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
-setopt share_history
+#setopt share_history
+
+unsetopt share_history
+setopt no_share_history
 
 # Ugly hack to fix history number in prompt
 # TODO: This mildly breaks command_execution_time; fix that
