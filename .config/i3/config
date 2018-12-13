@@ -232,8 +232,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id ~/dotfiles/volume.sh down
 bindsym XF86AudioMute exec --no-startup-id ~/dotfiles/volume.sh mute
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && ~/dotfiles/backlight.sh
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && ~/dotfiles/backlight.sh
 
 # Touchpad controls
 #bindsym XF86TouchpadToggle exec ~/dotfiles/toggletouchpad.sh # toggle touchpad
@@ -273,6 +273,9 @@ exec --no-startup-id redshift -l 53.95763:-1.08271
 
 # Run mopidy
 exec --no-startup-id mopidy
+
+# Fix keyboard LEDs
+exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
 
 # Set wallpaper
 #exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/solarized_mountains.png
