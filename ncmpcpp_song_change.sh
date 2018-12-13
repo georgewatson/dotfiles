@@ -9,6 +9,6 @@ artist=$(sed 's/&/and/g' <(echo "$artist_raw") | sed 's/;/, /g')
 album=$(sed 's/&/and/g' <(echo "$album_raw"))
 
 ~/dotfiles/notify-send.sh/notify-send.sh \
-    --urgency=low --expire-time=5000 --app-name=ncmpcpp \
+    --urgency=low --app-name=mpc -t 2000 \
     --replace-file=/tmp/ncmpcpp_notification \
-    --icon=audio-x-generic " $title" "$artist — <i>$album</i>"
+    " $title" "$artist — <i>$album</i>"

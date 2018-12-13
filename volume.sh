@@ -53,7 +53,7 @@ case $1 in
         amixer -D pulse set Master 1+ toggle > /dev/null
         if is_mute ; then
             ~/dotfiles/notify-send.sh/notify-send.sh ' Mute' -u normal \
-                --replace-file=/tmp/volume_notification -a 'pulse' -t 1000
+                --replace-file=/tmp/volume_notification -a 'pulse'
         else
             send_notification
         fi

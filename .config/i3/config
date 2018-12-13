@@ -243,8 +243,8 @@ bindsym XF86TouchpadToggle exec ~/dotfiles/toggletouchpad.sh # toggle touchpad
 #bindsym XF86AudioPause exec playerctl pause
 #bindsym XF86AudioNext exec playerctl next
 #bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPlay exec mpc toggle
-bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioPlay exec ~/dotfiles/play_pause.sh
+bindsym XF86AudioPause exec ~/dotfiles/play_pause.sh
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 
