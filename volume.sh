@@ -27,11 +27,11 @@ function send_notification {
     volume=`get_volume`
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
-    bar=$(seq -s "─" $(($volume)) | sed 's/[0-9]//g')
-    bar_after=$(seq -s " " $(((100 - $volume))) | sed 's/[0-9]//g')
+    bar=$(seq -s "─" $(($volume + 1)) | sed 's/[0-9]//g')
+    bar_after=$(seq -s " " $(((101 - $volume))) | sed 's/[0-9]//g')
     # Send the notification
     ~/dotfiles/notify-send.sh/notify-send.sh " Volume" -u normal \
-        "[$bar$bar_after] $volume%" --replace-file=/tmp/volume_notification \
+        "$bar$bar_after  $volume%" --replace-file=/tmp/volume_notification \
         -a 'pulse' -t 1000
 }
 

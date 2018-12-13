@@ -19,7 +19,7 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "<b>%s</b> %b %p (%a)"
+    format = "%a  <b>%s</b>  %b %p"
 
     # Sort messages by urgency
     sort = yes
@@ -64,7 +64,7 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "x3"
+    geometry = "0x1"
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -104,7 +104,7 @@
     separator_height = 0
 
     # padding between text and separator
-    padding = 3
+    padding = 4
 
     # horizontal padding
     horizontal_padding = 8
@@ -154,18 +154,21 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
     foreground = "#839496"
-    background = "#073642"
+    #background = "#073642"
+    background = "#002B36"
     frame_color = "#839496"
     timeout = 10
 
 [urgency_normal]
     foreground = "#268bd2"
-    background = "#073642"
+    #background = "#073642"
+    background = "#002B36"
     frame_color = "#268bd2"
     timeout = 10
 
 [urgency_critical]
     foreground = "#dc322f"
-    background = "#073642"
+    #background = "#073642"
+    background = "#002B36"
     frame_color = "#dc322f"
     timeout = 0
