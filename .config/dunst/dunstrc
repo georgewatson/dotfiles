@@ -44,7 +44,7 @@
 
     # show age of message if message is older than show_age_threshold seconds.
     # set to -1 to disable
-    show_age_threshold = 60
+    show_age_threshold = -1
 
     # split notifications into multiple lines if they don't fit into geometry
     word_wrap = no
@@ -152,19 +152,21 @@
     context = mod4+shift+i
 
 
+# Notifications don't time out until manually dismissed,
+# unless a timeout is defined when the notification is sent
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
     foreground = "#839496"
     #background = "#073642"
     background = "#002B36"
-    timeout = 10
+    timeout = 0
 
 [urgency_normal]
     foreground = "#268bd2"
     #background = "#073642"
     background = "#002B36"
-    timeout = 10
+    timeout = 0
 
 [urgency_critical]
     foreground = "#dc322f"
@@ -174,9 +176,15 @@
 
 
 [fullscreen_delay_everything]
-    fullscreen = delay
+    fullscreen = pushback
 [fullscreen_show_critical]
     msg_urgency = critical
+    fullscreen = show
+[fullscreen_show_volume]
+    summary = "Volume"
+    fullscreen = show
+[fullscreen_show_backlight]
+    summary = "Backlight"
     fullscreen = show
 
 
@@ -207,3 +215,16 @@
     summary = "Job failed"
     format = "  <b>%s</b>  %b"
     foreground = "#dc322f"
+
+[network_disconnected]
+    appname = NetworkManager
+    summary = Disconnected*
+    format = "睊  <b>%s</b>  %b"
+    urgency = critical
+    foreground = "#dc322f"
+[network_connected]
+    appname = NetworkManager
+    summary = "Connection Established"
+    format = "直  <b>%s</b>  %b"
+    urgency = normal
+    foreground = "#268bd2"

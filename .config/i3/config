@@ -278,9 +278,7 @@ exec --no-startup-id mopidy
 exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
 
 # Set wallpaper
-#exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/solarized_mountains.png
-# Christmas
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/christmas.png
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/york_map.png
 
 # Programs to run on startup
 exec i3-msg "workspace $ws1"; exec vivaldi
