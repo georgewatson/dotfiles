@@ -250,9 +250,9 @@ bindsym XF86AudioPrev exec mpc prev
 
 # PrtSc
 # Whole screen
-bindsym --release Print exec scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" "Screenshot saved" $f'
+bindsym --release Print exec scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
 # Select window or rectangle
-bindsym --release Shift+Print exec scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" "Screenshot saved" $f'
+bindsym --release Shift+Print exec scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
 
 # Launch compton for transparency etc
 exec --no-startup-id compton
@@ -270,9 +270,6 @@ bindsym $mod+F7 /usr/bin/autorandr --change
 
 # Run redshift to adjust colour temperature
 exec --no-startup-id redshift -l 53.95763:-1.08271
-
-# Run mopidy
-exec --no-startup-id mopidy
 
 # Fix keyboard LEDs
 exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
