@@ -236,7 +236,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && ~/dotfiles/backlight.sh
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && ~/dotfiles/backlight.sh
 
 # Touchpad controls
-#bindsym XF86TouchpadToggle exec ~/dotfiles/toggletouchpad.sh # toggle touchpad
+bindsym XF86Display exec ~/dotfiles/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
