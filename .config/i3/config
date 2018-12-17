@@ -160,10 +160,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -276,6 +276,10 @@ exec --no-startup-id mopidy
 
 # Fix keyboard LEDs
 exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
+
+# Get a low battery notification, using
+# <https://github.com/rjekker/i3-battery-popup>
+exec --no-startup-id i3-battery-popup -n -L 20
 
 # Set wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/york_map.png

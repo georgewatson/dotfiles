@@ -210,6 +210,7 @@
     appname = udiskie
     summary = "Device removed"
     format = ""
+    timeout = 5
 [udiskie_failed]
     appname = udiskie
     summary = "Job failed"

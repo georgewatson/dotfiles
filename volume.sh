@@ -10,7 +10,7 @@
 
 function get_volume {
     # From <https://unix.stackexchange.com/a/230533/243528>
-    SINK=$(pactl list short | grep RUNNING | sed -e \
+    SINK=$(pactl list short | grep RUNNING | head -n 1 | sed -e \
         's,^\([0-9][0-9]*\)[^0-9].*,\1,')
     pactl list sinks | grep '^[[:space:]]Volume:' | \
         head -n $(( $SINK + 1 )) | tail -n 1 | \
@@ -18,7 +18,7 @@ function get_volume {
 }
 
 function is_mute {
-    SINK=$(pactl list short | grep RUNNING | sed -e \
+    SINK=$(pactl list short | grep RUNNING | head -n 1 | sed -e \
         's,^\([0-9][0-9]*\)[^0-9].*,\1,')
     pactl list sinks | grep '^[[:space:]]Mute:' | \
         head -n $(( $SINK + 1 )) | tail -n 1 | \
@@ -55,7 +55,8 @@ case $1 in
         amixer -D pulse set Master 1+ toggle > /dev/null
         if is_mute ; then
             ~/dotfiles/notify-send.sh/notify-send.sh 'Mute' -u normal \
-                --replace-file=/tmp/volume_notification -a '' 'Pulse audio muted'
+                --replace-file=/tmp/volume_notification -t 2000 \
+                -a '' 'Pulse audio muted'
         else
             send_notification
         fi
