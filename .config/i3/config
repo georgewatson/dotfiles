@@ -138,7 +138,7 @@ bindsym $mod+Shift+equal move scratchpad
 bindsym $mod+equal scratchpad show
 
 # Dropdown terminal using the scratchpad
-for_window [instance="__dropdown"] floating enable, resize set 100 ppt 200, move position 0 -1, move scratchpad
+for_window [instance="__dropdown"] floating enable, resize set 100 ppt 200, move position 0 0, border none, move scratchpad
 bindsym $mod+semicolon exec i3-msg [instance='__dropdown'] scratchpad show
 exec i3-sensible-terminal --profile Dropdown -name __dropdown
 # Force launching a new dropdown instance in case the old one is closed
@@ -183,8 +183,12 @@ for_window [class=".*"] split toggle #toggles split at each new window
 bindsym $mod+Shift+q split toggle kill
 
 # Window settings
-new_window pixel 1
-hide_edge_borders both
+new_window pixel 0
+hide_edge_borders smart
+
+# Show borders while mod+. is held
+bindsym $mod+period exec i3-msg border pixel 1
+bindsym --release $mod+period exec i3-msg border pixel 0
 
 # Colours
 client.focused #268BD2 #268BD2 #002B36
@@ -247,9 +251,9 @@ bindsym XF86AudioPrev exec mpc prev
 
 # PrtSc
 # Whole screen
-bindsym --release Print exec scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
+bindsym --release Print exec --no-startup-id scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
 # Select window or rectangle
-bindsym --release Shift+Print exec scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
+bindsym --release Shift+Print exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
 
 # Launch compton for transparency etc
 exec --no-startup-id compton
