@@ -199,7 +199,6 @@
     format = "  <b>%s</b>  %b"
     urgency = critical
     timeout = 0
-    foreground = "#dc322f"
 
 [device_added]
     appname = udiskie
