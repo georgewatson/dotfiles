@@ -23,6 +23,8 @@ zoom_out	minus
 
 next_img	greater
 prev_img	less
+next_img	n
+prev_img	N
 reload_image	r
 size_to_image	w
 next_dir	bracketright
