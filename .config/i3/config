@@ -100,6 +100,18 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9 "
 set $ws10 "10 "
+set $wsf1 "F1"
+set $wsf2 "F2"
+set $wsf3 "F3"
+set $wsf4 "F4"
+set $wsf5 "F5"
+set $wsf6 "F6"
+set $wsf7 "F7"
+set $wsf8 "F8"
+set $wsf9 "F9"
+set $wsf10 "F10"
+set $wsf11 "F11"
+set $wsf12 "F12"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -112,6 +124,18 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+F1 workspace $wsf1
+bindsym $mod+F2 workspace $wsf2
+bindsym $mod+F3 workspace $wsf3
+bindsym $mod+F4 workspace $wsf4
+bindsym $mod+F5 workspace $wsf5
+bindsym $mod+F6 workspace $wsf6
+bindsym $mod+F7 workspace $wsf7
+bindsym $mod+F8 workspace $wsf8
+bindsym $mod+F9 workspace $wsf9
+bindsym $mod+F10 workspace $wsf10
+bindsym $mod+F11 workspace $wsf11
+bindsym $mod+F12 workspace $wsf12
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -124,6 +148,18 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+F1 move container to workspace $wsf1
+bindsym $mod+Shift+F2 move container to workspace $wsf2
+bindsym $mod+Shift+F3 move container to workspace $wsf3
+bindsym $mod+Shift+F4 move container to workspace $wsf4
+bindsym $mod+Shift+F5 move container to workspace $wsf5
+bindsym $mod+Shift+F6 move container to workspace $wsf6
+bindsym $mod+Shift+F7 move container to workspace $wsf7
+bindsym $mod+Shift+F8 move container to workspace $wsf8
+bindsym $mod+Shift+F9 move container to workspace $wsf9
+bindsym $mod+Shift+F10 move container to workspace $wsf10
+bindsym $mod+Shift+F11 move container to workspace $wsf11
+bindsym $mod+Shift+F12 move container to workspace $wsf12
 
 # Auto back-and-forth
 workspace_auto_back_and_forth yes
@@ -216,6 +252,8 @@ bar {
 
 # If I'm recording my screen, I probably don't want the tiling disrupted
 for_window [class="Kazam"] floating enable
+# Gnuplot should always open a popup
+for_window [class="gnuplot"] floating enable
 
 # Set touchpad properties (speed, natural scrolling)
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
@@ -254,6 +292,10 @@ bindsym --release Print exec --no-startup-id scrot -e 'xclip -selection clipboar
 # Select window or rectangle
 bindsym --release Shift+Print exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots && notify-send -i "~/Pictures/screenshots/$f" -a "scrot" "Screenshot saved" $f'
 
+# Run ssh-agent and add my key
+exec --no-startup-id ssh-agent
+exec --no-startup-id ssh-add ~/.ssh/id_rsa
+
 # Launch compton for transparency etc
 exec --no-startup-id compton
 
@@ -265,8 +307,8 @@ exec --no-startup-id udiskie -s
 
 # Run autorandr to automatically detect additional displays
 exec --no-startup-id autorandr
-# Refresh with Mod+F7
-bindsym $mod+F7 /usr/bin/autorandr --change
+# Refresh with Mod+@
+bindsym $mod+Shift+apostrophe exec --no-startup-id /usr/bin/autorandr --change
 
 # Run redshift to adjust colour temperature
 exec --no-startup-id redshift -l 53.95763:-1.08271

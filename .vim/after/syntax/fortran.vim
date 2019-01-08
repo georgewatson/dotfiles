@@ -28,11 +28,11 @@ syntax match fNiceOperator "\<sqrt\>" conceal cchar=√
 
 syntax keyword fNiceOperator do conceal cchar=∀
 syntax keyword fNiceOperator return conceal cchar=↲
+syntax match fNiceOperator "\<else\%( \)\?if\>" conceal cchar=▹
 syntax keyword fNiceOperator if conceal cchar=▸
 syntax keyword fNiceOperator else conceal cchar=∎
-syntax match fNiceOperator "\<else\%( \)\?if\>" conceal cchar=▹
 "syntax keyword fNiceOperator exit conceal cchar=↯
-syntax keyword fNiceOperator pure conceal cchar=•
+syntax keyword fNiceOperator pure conceal cchar=λ
 syntax keyword fNiceUnitheader function conceal cchar=⁕
 syntax keyword fNiceUnitHeader subroutine conceal cchar=★
 syntax keyword fNiceUnitHeader module conceal cchar=§
@@ -40,14 +40,17 @@ syntax keyword fNiceUnitHeader module conceal cchar=§
 syntax keyword fNiceFunction str conceal cchar=`
 syntax keyword fNiceType integer conceal cchar=ℤ
 syntax keyword fNiceType real conceal cchar=ℝ
+syntax match fNiceType "double precision" conceal cchar=𝔻
 syntax keyword fNiceType complex conceal cchar=ℂ
-syntax keyword fNiceType logical
+" Using 𝔹 sometimes causes other concealed characters on the line to disappear
+syntax keyword fNiceType logical conceal cchar=B
 syntax keyword fNiceType character
 syntax match fNiceType "\<implicit\%( none\)\?\>"
 syntax keyword fNiceFunction int conceal cchar=ℤ
+syntax match fNiceType "kind=" conceal cchar=_
 
-syntax match fNiceType " \?intent \?" conceal
-syntax match fNiceType " \?dimension \?" conceal
+syntax match fNiceType ",\? \?intent \?" conceal
+syntax match fNiceType ",\? \?dimension \?" conceal
 
 syntax keyword fNormal inout conceal cchar=⇄
 syntax keyword fNormal in conceal cchar=→
