@@ -52,9 +52,9 @@ syntax match fNiceType "kind=" conceal cchar=_
 syntax match fNiceType ",\? \?intent \?" conceal
 syntax match fNiceType ",\? \?dimension \?" conceal
 
-syntax keyword fNormal inout conceal cchar=⇄
-syntax keyword fNormal in conceal cchar=→
-syntax keyword fNormal out conceal cchar=←
+syntax match fNormal "(inout)" conceal cchar=⇄
+syntax match fNormal "(in)" conceal cchar=→
+syntax match fNormal "(out)" conceal cchar=←
 
 syntax keyword fNiceKeyword then conceal cchar={
 syntax match fNiceKeyword "\<end\%( \)\?if\>" conceal cchar=}
