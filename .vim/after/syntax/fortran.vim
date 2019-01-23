@@ -59,6 +59,8 @@ syntax match fNormal "(out)" conceal cchar=←
 syntax keyword fNiceKeyword then conceal cchar={
 syntax match fNiceKeyword "\<end\%( \)\?if\>" conceal cchar=}
 syntax match fNiceKeyword "\<end\%( \)\?do\>" conceal cchar=]
+"syntax match fNiceKeyword "\<end\%( \)\?if\>" conceal cchar=◁
+"syntax match fNiceKeyword "\<end\%( \)\?do\>" conceal cchar=↻
 syntax match fNiceUnitHeader "\<end\%( \)\?\%(module\|function\|subroutine\)\>" conceal cchar=}
 
 syntax keyword fNormal alpha conceal cchar=α

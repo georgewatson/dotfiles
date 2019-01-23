@@ -428,6 +428,9 @@ hi SpellBad cterm=underline ctermfg=red
 " And turn it off on leaving
 :autocmd! InsertLeave * silent! execute ('!xset led 1 led off &')
 
+" Set syntax highlighting for IRC logs
+autocmd BufNewFile,BufRead *.irc set syntax=irc
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local

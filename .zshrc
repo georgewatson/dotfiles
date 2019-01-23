@@ -325,5 +325,12 @@ eval $(thefuck --alias)
 export RTV_BROWSER='vivaldi --new-window'
 
 alias dropdown='nohup konsole -name __dropdown &'
+alias feh='feh --scale-down --auto-zoom --image-bg "#002b36"'
 
 source ~/.zshrc.local
+
+PATH="/home/george/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/george/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/george/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/george/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/george/perl5"; export PERL_MM_OPT;

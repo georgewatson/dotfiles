@@ -194,6 +194,20 @@
     urgency = critical
     timeout = 0
 
+[weechat]
+    appname = weechat
+    format = "  <b>%s</b>  %b"
+    urgency = critical
+    timeout = 0
+[weechat_disconnected]
+    appname = weechat
+    body = *isconnected from*
+    format = ""
+[weechat_info]
+    appname = weechat
+    body = **
+    format = ""
+
 [gmail]
     body = *mail.google.com*
     format = "  <b>%s</b>  %b"
