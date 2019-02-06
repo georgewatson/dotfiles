@@ -298,7 +298,6 @@ set guifont=DejaVuSansMono\ Nerd\ Font\ Book\ 11
 if has("autocmd")
     au BufNewFile,BufRead *.nml set filetype=fortran
     au BufNewFile,BufRead *.namelist set filetype=fortran
-    au BufNewFile,BufRead *.in set filetype=fortran
 endif
 
 "nnoremap <Leader>o :tabe<space>
@@ -430,6 +429,16 @@ hi SpellBad cterm=underline ctermfg=red
 
 " Set syntax highlighting for IRC logs
 autocmd BufNewFile,BufRead *.irc set syntax=irc
+
+" gVim settings
+set guifont=FuraCode\ Nerd\ Font\ 11
+set guioptions=agimLt
+
+nnoremap <leader>m :make<CR>
+
+" Uncomment for light mode
+"set background=light
+"let g:airline_solarized_bg='light'
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

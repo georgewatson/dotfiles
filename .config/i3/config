@@ -225,11 +225,16 @@ bindsym --release $mod+period exec i3-msg border pixel 0
 
 # Colours
 client.focused #268BD2 #268BD2 #002B36
-client.focused_inactive #073642 #073642 #839496
-client.unfocused #073642 #073642 #839496
+client.focused_inactive #002B36 #073642 #839496
+client.unfocused #002B36 #073642 #839496
 client.urgent #DC322F #DC322F #002B36
-client.placeholder #073642 #073642 #839496
+client.placeholder #002B36 #073642 #839496
 client.background #002B36
+
+# Gaps
+gaps inner 20
+gaps outer 2
+smart_gaps on
 
 bindsym $mod+r mode "resize"
 
@@ -299,7 +304,7 @@ exec --no-startup-id ssh-agent
 exec --no-startup-id ssh-add ~/.ssh/id_rsa
 
 # Launch compton for transparency etc
-exec --no-startup-id compton
+exec --no-startup-id compton -b
 
 # Launch network manager applet
 exec --no-startup-id nm-applet
@@ -330,3 +335,6 @@ exec --no-startup-id feh --randomize --bg-scale ~/Pictures/wallpapers/cool_mount
 exec i3-msg "workspace $ws1"; exec vivaldi
 #exec i3-msg "workspace $ws2"; exec konsole --noclose -e "zsh -c \"neofetch; zsh\""
 # TODO: Make this work
+
+# Use mod+v to use Vim anywhere
+bindsym $mod+v exec ~/.vim-anywhere/bin/run

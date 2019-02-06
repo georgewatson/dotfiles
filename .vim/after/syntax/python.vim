@@ -50,7 +50,7 @@ syntax keyword pyNiceOperator else conceal cchar=∎
 syntax keyword pyNiceOperator def conceal cchar=⁕
 syntax keyword pyNiceOperator class conceal cchar=§
 
-syntax keyword pyNiceFunction str conceal cchar=𝐒
+syntax keyword pyNiceFunction str conceal cchar=“
 syntax keyword pyNiceFunction int conceal cchar=ℤ
 syntax keyword pyNiceFunction float conceal cchar=ℝ
 
