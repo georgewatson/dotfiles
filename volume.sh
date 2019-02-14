@@ -30,6 +30,7 @@ function send_notification {
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $((($volume / 2) + 1)) | sed 's/[0-9]//g')
+
     bar_after=$(seq -s " " $((51 - ($volume / 2))) | sed 's/[0-9]//g')
     # Send the notification
     ~/dotfiles/notify-send.sh/notify-send.sh "Volume" -u normal \

@@ -80,6 +80,9 @@ Plugin 'junegunn/vim-peekaboo'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 
+" Dispatch
+Plugin 'tpope/vim-dispatch'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -326,6 +329,9 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 map q: :q
 
+" Make Y consistent with C and D
+nnoremap Y y$
+
 " Highlight search results
 set hlsearch
 " But clear the highlights easily
@@ -434,7 +440,8 @@ autocmd BufNewFile,BufRead *.irc set syntax=irc
 set guifont=FuraCode\ Nerd\ Font\ 11
 set guioptions=agimLt
 
-nnoremap <leader>m :make<CR>
+nnoremap <leader>m :Make<CR>
+nnoremap <leader>M :Make!<CR>
 
 " Uncomment for light mode
 "set background=light
