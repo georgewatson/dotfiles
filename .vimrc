@@ -47,7 +47,7 @@ Plugin 'tpope/vim-fugitive'
 " Hard mode
 "Plugin 'wikitopian/hardmode'
 " OR Hardtime
-Plugin 'takac/vim-hardtime'
+"Plugin 'takac/vim-hardtime'
 
 " Show marks
 Plugin 'jacquesbh/vim-showmarks'
@@ -56,19 +56,19 @@ Plugin 'jacquesbh/vim-showmarks'
 " Plugin 'thaerkh/vim-indentguides'
 
 " Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 
 " Ack/ag support
-Plugin 'mileszs/ack.vim'
+"Plugin 'mileszs/ack.vim'
 
 " Define indentation levels as vim objects
-Plugin 'michaeljsmith/vim-indent-object'
+"Plugin 'michaeljsmith/vim-indent-object'
 
 " CtrlP interface for opening files
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 " Tmuxline
-Plugin 'edkolev/tmuxline.vim'
+"Plugin 'edkolev/tmuxline.vim'
 
 " View buffers on "/@/C-r
 Plugin 'junegunn/vim-peekaboo'
@@ -82,6 +82,9 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 " Dispatch
 Plugin 'tpope/vim-dispatch'
+
+" Live preview for :s etc.
+Plugin 'markonm/traces.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -173,8 +176,8 @@ endif
 
 " Make it obvious where 80 characters is
 set textwidth=80
-let &colorcolumn=join(range(81,999),",")
-autocmd BufEnter * highlight OverLength ctermfg=darkred
+"let &colorcolumn=join(range(81,999),",")
+autocmd BufEnter * highlight OverLength ctermfg=darkred ctermbg=black
 autocmd BufEnter * match OverLength /\%81v.*/
 
 " Numbers
@@ -271,10 +274,13 @@ let g:airline#extensions#ale#enabled = 1
 nmap <C-h> <Plug>(ale_previous_wrap)
 nmap <C-l> <Plug>(ale_next_wrap)
 " Nicer gutter symbols for errors and warnings
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '?'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 " Let ale show the loclist
 let g:ale_open_list = 'on_save'
+" Other settings
+let g:ale_completion_enabled = 1
+let g:ale_fortran_gcc_executable = 'gfortran'
 
 "" Set up Syntastic
 "set statusline+=%#warningmsg#
@@ -289,7 +295,17 @@ let g:ale_open_list = 'on_save'
 " Colour scheme
 syntax enable
 set background=dark
+let g:solarized_termcolors=16
+let g:solarized_bold=1
+let g:solarized_italic=1
+let g:solarized_underline=1
+let g:solarized_termtrans = 1
 colorscheme solarized
+highlight clear LineNr
+highlight LineNr ctermfg=darkgray
+highlight CursorLineNr ctermfg=darkblue
+highlight clear CursorLine
+highlight EndOfBuffer ctermfg=black
 
 " Open multiple files in tabs
 ":au BufAdd,BufNewFile,BufRead * nested tab sball
@@ -352,7 +368,7 @@ set t_Co=256
 "let g:hardtime_default_on = 1
 " Use <leader>h to toggle hard mode (or hardtime)
 "nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-nnoremap <leader>h <Esc>:HardTimeToggle<CR>
+"nnoremap <leader>h <Esc>:HardTimeToggle<CR>
 
 autocmd VimEnter,BufNewFile,BufReadPost * silent! DoShowMarks!
 
@@ -389,7 +405,6 @@ augroup END
 "nnoremap <C-l> <C-w>l
 
 " Insert new lines without entering insert mode
-nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 
 " Use Vim airline to define tmux statusline
@@ -399,14 +414,14 @@ let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 " Pandoc settings
 " Generate PDF on save
 let g:pandoc#command#autoexec_on_writes = 1
-let g:pandoc#command#autoexec_command = "Pandoc pdf --toc --variable geometry:margin=1in"
+let g:pandoc#command#autoexec_command = "Pandoc pdf --toc --variable geometry:margin=1in --variable urlcolor=cyan"
 let g:pandoc#command#arguments = "pdf --toc --variable geometry:margin=1in"
 " Disable foldcolumn
 let g:pandoc#folding#fdc = 0
 " Text width 80
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#formatting#smart_autoformat_on_cursor_moved = 1
-let g:pandoc#formatting#mode="hA"
+let g:pandoc#formatting#mode="ha"
 
 " Assume ambiguous-width characters are single-width
 set ambiwidth=single
@@ -446,6 +461,20 @@ nnoremap <leader>M :Make!<CR>
 " Uncomment for light mode
 "set background=light
 "let g:airline_solarized_bg='light'
+
+" Be brave and go statusline-free
+au VimEnter * set laststatus=0
+function! ToggleLaststatus()
+    if &laststatus == 2
+        set laststatus=0
+    elseif &laststatus == 0
+        set laststatus=2
+    endif
+    return
+endfunction
+nnoremap <leader>s :call ToggleLaststatus()<cr>
+" And tabline-free if <2 buffers are open
+let g:airline#extensions#tabline#buffer_min_count=2
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

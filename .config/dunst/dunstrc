@@ -207,6 +207,26 @@
     appname = weechat
     body = **
     format = ""
+[weechat_mymsg]
+    appname = weechat
+    body = *dendodge *
+    format = ""
+[weechat_urlserver]
+    appname = weechat
+    body = *george-laptop*
+    format = ""
+[weechat_error]
+    appname = weechat
+    body = *Error parsing parameter*
+    format = ""
+[weechat_error2]
+    appname = weechat
+    body = *^*
+    format = ""
+[weechat_error3]
+    appname = weechat
+    body = *(empty input)*
+    format = ""
 
 [gmail]
     body = *mail.google.com*
