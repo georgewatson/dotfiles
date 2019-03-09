@@ -333,13 +333,9 @@ exec --no-startup-id redshift -l 53.95763:-1.08271
 # Fix keyboard LEDs
 exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
 
-# Get a low battery notification, using
-# <https://github.com/rjekker/i3-battery-popup>
-exec --no-startup-id i3-battery-popup -n -L 20
-
 # Set wallpaper
 # exec --no-startup-id feh --randomize --bg-scale ~/Pictures/wallpapers/*
-exec --no-startup-id feh --randomize --bg-scale ~/Pictures/wallpapers/cool_mountain.png
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/cool_mountain.png
 
 # Programs to run on startup
 exec i3-msg "workspace $ws1"; exec vivaldi

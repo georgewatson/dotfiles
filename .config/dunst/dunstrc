@@ -227,6 +227,10 @@
     appname = weechat
     body = *(empty input)*
     format = ""
+[weechat_buffextras]
+    appname = weechat
+    body = *buffextras*
+    format = ""
 
 [gmail]
     body = *mail.google.com*

@@ -310,9 +310,9 @@ execute_on_song_change = "~/dotfiles/ncmpcpp_song_change.sh"
 #
 #volume_change_step = 2
 #
-#autocenter_mode = no
+autocenter_mode = yes
 #
-#centered_cursor = no
+centered_cursor = yes
 #
 ##
 ## Note: You can specify third character which will be used to build 'empty'

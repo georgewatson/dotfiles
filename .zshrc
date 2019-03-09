@@ -39,7 +39,8 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%} "
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%F{white}"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%F{default} "
 
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=' '
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
@@ -326,6 +327,13 @@ export RTV_BROWSER='vivaldi --new-window'
 
 alias dropdown='nohup konsole -name __dropdown &'
 alias feh='feh --scale-down --auto-zoom --image-bg "#002b36"'
+
+# Open .md file in vim & .pdf in zathura simultaneously
+note () {
+    echo "${1:r}.pdf"
+    zathura "${1:r}.pdf" &
+    vim "${1:r}.md"
+}
 
 source ~/.zshrc.local
 

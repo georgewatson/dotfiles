@@ -24,8 +24,10 @@ Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'enomsg/vim-haskellConcealPlus'
 
 " Airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" Or Buftabline if buffer-tabs are all I want
+Plugin 'ap/vim-buftabline'
 
 " Solarized colours
 Plugin 'altercation/vim-colors-solarized'
@@ -270,6 +272,9 @@ let g:airline_powerline_fonts = 1
 " Let airline know about ale
 let g:airline#extensions#ale#enabled = 1
 
+" Set up buftabline
+let g:buftabline_indicators = 1
+
 " Navigate around ale matches easily
 nmap <C-h> <Plug>(ale_previous_wrap)
 nmap <C-l> <Plug>(ale_next_wrap)
@@ -302,10 +307,22 @@ let g:solarized_underline=1
 let g:solarized_termtrans = 1
 colorscheme solarized
 highlight clear LineNr
-highlight LineNr ctermfg=darkgray
-highlight CursorLineNr ctermfg=darkblue
+highlight LineNr ctermfg=10
+highlight CursorLineNr ctermfg=4
 highlight clear CursorLine
 highlight EndOfBuffer ctermfg=black
+" Diffs and gitgutter
+highlight clear DiffAdd
+highlight DiffAdd ctermfg=2
+highlight clear DiffChange
+highlight DiffChange ctermfg=3
+highlight clear DiffDelete
+highlight DiffDelete ctermfg=1
+" Menus and buftabline
+highlight clear TabLine
+highlight clear TabLineFill
+highlight clear TabLineSel
+highlight TabLineSel ctermfg=black ctermbg=4
 
 " Open multiple files in tabs
 ":au BufAdd,BufNewFile,BufRead * nested tab sball
@@ -355,9 +372,6 @@ map <silent> <leader><cr> :noh<cr>
 
 " Allow switching buffers without writing changes
 set hidden
-
-" Always show statusline
-set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
@@ -413,14 +427,16 @@ let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 
 " Pandoc settings
 " Generate PDF on save
-let g:pandoc#command#autoexec_on_writes = 1
+"let g:pandoc#command#autoexec_on_writes = 1
 let g:pandoc#command#autoexec_command = "Pandoc pdf --toc --variable geometry:margin=1in --variable urlcolor=cyan"
 let g:pandoc#command#arguments = "pdf --toc --variable geometry:margin=1in"
 " Disable foldcolumn
 let g:pandoc#folding#fdc = 0
+" Folding is slow, so do it less
+let g:pandoc#folding#level = 2
 " Text width 80
 let g:pandoc#formatting#textwidth = 80
-let g:pandoc#formatting#smart_autoformat_on_cursor_moved = 1
+let g:pandoc#formatting#smart_autoformat_on_cursor_moved = 0
 let g:pandoc#formatting#mode="ha"
 
 " Assume ambiguous-width characters are single-width
@@ -453,28 +469,33 @@ autocmd BufNewFile,BufRead *.irc set syntax=irc
 
 " gVim settings
 set guifont=FuraCode\ Nerd\ Font\ 11
-set guioptions=agimLt
+set guioptions=acgiLt
 
 nnoremap <leader>m :Make<CR>
-nnoremap <leader>M :Make!<CR>
+nnoremap <leader><S-m> :Make!<CR>
 
 " Uncomment for light mode
 "set background=light
 "let g:airline_solarized_bg='light'
 
 " Be brave and go statusline-free
-au VimEnter * set laststatus=0
+au VimEnter * set laststatus=1
 function! ToggleLaststatus()
     if &laststatus == 2
-        set laststatus=0
-    elseif &laststatus == 0
+        set laststatus=1
+    elseif &laststatus == 1
         set laststatus=2
     endif
     return
 endfunction
 nnoremap <leader>s :call ToggleLaststatus()<cr>
+" But have a nicer ruler
+set rulerformat=%=%#Type#\\ %l\/%L\ \\ %c
+" and make command-line messages shorter
+set shortmess=aWIF
 " And tabline-free if <2 buffers are open
 let g:airline#extensions#tabline#buffer_min_count=2
+let g:buftabline_show=1
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
