@@ -32,12 +32,12 @@ syntax match fNiceOperator "\<else\%( \)\?if\>" conceal cchar=▹
 syntax keyword fNiceOperator if conceal cchar=▸
 syntax keyword fNiceOperator else conceal cchar=∎
 "syntax keyword fNiceOperator exit conceal cchar=↯
-syntax keyword fNiceOperator pure conceal cchar=λ
-syntax keyword fNiceUnitheader function conceal cchar=⁕
+syntax keyword fNiceOperator pure conceal cchar=◯
+syntax keyword fNiceUnitheader function conceal cchar=λ
 syntax keyword fNiceUnitHeader subroutine conceal cchar=★
 syntax keyword fNiceUnitHeader module conceal cchar=§
 
-syntax keyword fNiceFunction str conceal cchar=`
+syntax keyword pyNiceFunction str conceal cchar=“
 syntax keyword fNiceType integer conceal cchar=ℤ
 syntax keyword fNiceType real conceal cchar=ℝ
 syntax match fNiceType "double precision" conceal cchar=𝔻

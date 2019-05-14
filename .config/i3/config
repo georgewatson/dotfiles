@@ -36,7 +36,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#002B36' -nf '#839496' -sb '#268BD2' -sf '#002B36'"
+#bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#002B36' -nf '#839496' -sb '#268BD2' -sf '#002B36'"
+bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#333333' -nf '#ffffff' -sb '#30b7f3' -sf '#333333'"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -55,6 +56,9 @@ bindsym $mod+l focus right
 # bindsym --release $mod+j exec i3-msg border pixel 0
 # bindsym --release $mod+k exec i3-msg border pixel 0
 # bindsym --release $mod+l exec i3-msg border pixel 0
+
+# Require keyboard commands to change focus
+focus_follows_mouse no
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -231,12 +235,12 @@ bindsym $mod+period exec i3-msg border pixel 1
 bindsym --release $mod+period exec i3-msg border pixel 0
 
 # Colours
-client.focused #268BD2 #268BD2 #002B36
-client.focused_inactive #002B36 #073642 #839496
-client.unfocused #002B36 #073642 #839496
-client.urgent #DC322F #DC322F #002B36
-client.placeholder #002B36 #073642 #839496
-client.background #002B36
+client.focused #3067f3 #30b7f3 #333333
+client.focused_inactive #333333 #777777 #ffffff
+client.unfocused #333333 #777777 #ffffff
+client.urgent #f33051 #f33051 #333333
+client.placeholder #333333 #777777 #ffffff
+client.background #333333
 
 # Gaps
 gaps inner 20
@@ -258,12 +262,12 @@ bar {
         status_command i3status
         separator_symbol " "
         colors {
-                background #002B3600
-                statusline #839496
-                focused_workspace #268BD2 #268BD2 #002B36
-                active_workspace #859900 #859900 #002B36
-                inactive_workspace #002B3600 #002B3600 #839496
-                urgent_workspace #DC322F #DC322F #002B36
+                background #33333300
+                statusline #cccccc
+                focused_workspace #30b7f3 #30b7f3 #333333
+                active_workspace #63f330 #63f330 #333333
+                inactive_workspace #33333300 #33333300 #cccccc
+                urgent_workspace #f33051 #f33051 #333333
         }
 }
 
@@ -277,10 +281,13 @@ exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Na
 # exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Accel Speed" 1
 # exec --no-startup-id xset m 1/6 0
 
+# Fix keyboard LEDs
+exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
 # Rebind caps lock as escape
 # This leaves no caps-lock available
 # Rebind pause (fn + right shift) as compose
-exec --no-startup-id setxkbmap -option caps:escape -option compose:paus
+# Use left alt + left shift to toggle English & Greek
+exec --no-startup-id setxkbmap -layout gb,gr -variant extd, -option caps:escape -option compose:paus -option 'grp:lalt_lshift_toggle'
 
 # Enable multimedia keys
 #
@@ -330,12 +337,9 @@ bindsym $mod+Shift+apostrophe exec --no-startup-id /usr/bin/autorandr --change
 # Run redshift to adjust colour temperature
 exec --no-startup-id redshift -l 53.95763:-1.08271
 
-# Fix keyboard LEDs
-exec --no-startup-id xkbcomp myconf.xkb $DISPLAY
-
 # Set wallpaper
 # exec --no-startup-id feh --randomize --bg-scale ~/Pictures/wallpapers/*
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/cool_mountain.png
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/grey_mountain.png
 
 # Programs to run on startup
 exec i3-msg "workspace $ws1"; exec vivaldi

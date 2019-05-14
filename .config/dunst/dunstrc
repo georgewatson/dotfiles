@@ -157,21 +157,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    foreground = "#839496"
-    #background = "#073642"
-    background = "#002B36"
+    foreground = "#cccccc"
+    background = "#222222"
     timeout = 0
 
 [urgency_normal]
-    foreground = "#268bd2"
-    #background = "#073642"
-    background = "#002B36"
+    foreground = "#30b7f3"
+    background = "#222222"
     timeout = 0
 
 [urgency_critical]
-    foreground = "#dc322f"
-    #background = "#073642"
-    background = "#002B36"
+    foreground = "#f33051"
+    background = "#222222"
     timeout = 0
 
 
@@ -259,17 +256,17 @@
     appname = udiskie
     summary = "Job failed"
     format = "  <b>%s</b>  %b"
-    foreground = "#dc322f"
+    foreground = "#f33051"
 
 [network_disconnected]
     appname = NetworkManager
     summary = Disconnected*
     format = "睊  <b>%s</b>  %b"
     urgency = critical
-    foreground = "#dc322f"
+    foreground = "#f33051"
 [network_connected]
     appname = NetworkManager
     summary = "Connection Established"
     format = "直  <b>%s</b>  %b"
     urgency = normal
-    foreground = "#268bd2"
+    foreground = "#30b7f3"

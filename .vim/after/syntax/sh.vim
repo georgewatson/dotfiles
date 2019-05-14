@@ -6,17 +6,17 @@ endif
 " remove the keywords. we'll re-add them below
 syntax clear shOperator
 
-"syntax match shOperator "\<is\>"
+"syntax match shOperator "\<is\>" conceal
 
 syntax match shNiceOperator "\<in\>" conceal cchar=∈
-"syntax match shNiceOperator "\<or\>" conceal cchar=∨
-"syntax match shNiceOperator "\<and\>" conceal cchar=∧
+syntax match shNiceOperator "\<or\>" conceal cchar=∨
+syntax match shNiceOperator "\<and\>" conceal cchar=∧
 " include the space after “not” – if present – so that “not a” becomes “¬a”.
 " also, don't hide “not” behind  ‘¬’ if it is after “is ”.
 "syntax match shNiceOperator "\%(is \)\@<!\<not\%( \|\>\)" conceal cchar=¬
 " Or, don't include the space, so "not a" becomes "¬ a"
-"syntax match shNiceOperator "\%(is \)\@<!\<not\>" conceal cchar=¬
-"syntax match shNiceOperator "\<not in\>" conceal cchar=∉
+syntax match shNiceOperator "\%(is \)\@<!\<not\>" conceal cchar=¬
+syntax match shNiceOperator "\<not in\>" conceal cchar=∉
 
 " Inferior to FiraCode ligatures
 "syntax match shNiceOperator "<=" conceal cchar=≤

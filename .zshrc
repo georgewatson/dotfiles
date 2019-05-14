@@ -326,7 +326,7 @@ eval $(thefuck --alias)
 export RTV_BROWSER='vivaldi --new-window'
 
 alias dropdown='nohup konsole -name __dropdown &'
-alias feh='feh --scale-down --auto-zoom --image-bg "#002b36"'
+alias feh='feh --scale-down --auto-zoom --image-bg "#333333"'
 
 # Open .md file in vim & .pdf in zathura simultaneously
 note () {

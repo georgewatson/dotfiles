@@ -88,6 +88,9 @@ Plugin 'tpope/vim-dispatch'
 " Live preview for :s etc.
 Plugin 'markonm/traces.vim'
 
+" Work with surrounds/delimiters
+Plugin 'tpope/vim-surround'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -286,6 +289,7 @@ let g:ale_open_list = 'on_save'
 " Other settings
 let g:ale_completion_enabled = 1
 let g:ale_fortran_gcc_executable = 'gfortran'
+let b:ale_linters = {'javascript': ['standard', 'eslint']}
 
 "" Set up Syntastic
 "set statusline+=%#warningmsg#
@@ -323,6 +327,8 @@ highlight clear TabLine
 highlight clear TabLineFill
 highlight clear TabLineSel
 highlight TabLineSel ctermfg=black ctermbg=4
+" Misspellings
+highlight SpellBad cterm=underline term=underline gui=undercurl
 
 " Open multiple files in tabs
 ":au BufAdd,BufNewFile,BufRead * nested tab sball
@@ -343,7 +349,7 @@ nnoremap <Leader>e :edit<space>
 nnoremap gt :bn<CR>
 nnoremap gT :bp<CR>
 nnoremap <Leader>g :bu<space>
-nnoremap <Leader>w :w<CR>
+"nnoremap <Leader>w :w<CR>
 nnoremap <Leader><Leader> :w<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
@@ -454,10 +460,10 @@ endfunction
 nnoremap <silent> <leader>c :call ToggleConcealLevel()<CR>
 
 "Remove all trailing whitespace by pressing <leader>w
-nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>``<CR>
 
 " Highlight misspelt words in red
-hi SpellBad cterm=underline ctermfg=red
+" hi SpellBad cterm=underline ctermfg=red
 
 " Light up the caps-lock light on entering insert mode
 :autocmd! InsertEnter * silent! execute ('!xset led 1 led on &')

@@ -47,7 +47,9 @@ syntax keyword pyNiceOperator elif conceal cchar=▹
 "syntax keyword pyNiceOperator else conceal cchar=✘
 syntax keyword pyNiceOperator else conceal cchar=∎
 "syntax keyword pyNiceOperator break conceal cchar=↯
-syntax keyword pyNiceOperator def conceal cchar=⁕
+syntax keyword pyNiceOperator def conceal cchar=λ
+"syntax keyword pyNiceOperator def conceal cchar=⁕
+"
 syntax keyword pyNiceOperator class conceal cchar=§
 
 syntax keyword pyNiceFunction str conceal cchar=“
