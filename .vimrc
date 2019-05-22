@@ -91,6 +91,9 @@ Plugin 'markonm/traces.vim'
 " Work with surrounds/delimiters
 Plugin 'tpope/vim-surround'
 
+" Handle Liquid files properly
+Plugin 'tpope/vim-liquid'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -329,6 +332,8 @@ highlight clear TabLineSel
 highlight TabLineSel ctermfg=black ctermbg=4
 " Misspellings
 highlight SpellBad cterm=underline term=underline gui=undercurl
+" Invert colours in visual mode
+highlight Visual cterm=reverse ctermfg=none ctermbg=none
 
 " Open multiple files in tabs
 ":au BufAdd,BufNewFile,BufRead * nested tab sball

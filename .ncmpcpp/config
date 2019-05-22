@@ -263,7 +263,7 @@ now_playing_prefix = $b
 ##
 #
 #song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
-song_columns_list_format = (1f)[]{} (20)[]{a} (50)[white]{t|f:Title} (20)[cyan]{b} (4f)[magenta]{l}
+song_columns_list_format = (1f)[]{} (20)[]{a} (50)[8]{t|f:Title} (20)[cyan]{b} (4f)[magenta]{l}
 #
 ##### various settings #####
 #

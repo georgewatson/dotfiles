@@ -327,6 +327,7 @@ export RTV_BROWSER='vivaldi --new-window'
 
 alias dropdown='nohup konsole -name __dropdown &'
 alias feh='feh --scale-down --auto-zoom --image-bg "#333333"'
+alias neofetch='neofetch --ascii ~/gw.ascii --ascii_colors 1 2 3 4 5 6'
 
 # Open .md file in vim & .pdf in zathura simultaneously
 note () {
