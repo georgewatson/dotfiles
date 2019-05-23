@@ -182,7 +182,7 @@ unsetopt histignorealldups
 setopt promptsubst
 
 export EDITOR=vim
-export BROWSER=vivaldi
+export BROWSER=qutebrowser
 
 #alias viv="vivaldi </dev/null >/dev/null 2>&1 & disown"
 #alias kraken="gitkraken </dev/null >/dev/null 2>&1 & disown"
@@ -323,7 +323,7 @@ alias vpnstatus='/usr/local/pulse/pulsesvc -S'
 eval $(thefuck --alias)
 
 # Open rtv content in a new browser window
-export RTV_BROWSER='vivaldi --new-window'
+export RTV_BROWSER='qutebrowser'
 
 alias dropdown='nohup konsole -name __dropdown &'
 alias feh='feh --scale-down --auto-zoom --image-bg "#333333"'

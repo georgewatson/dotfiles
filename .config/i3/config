@@ -342,7 +342,7 @@ exec --no-startup-id redshift -l 53.95763:-1.08271
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/grey_mountain.png
 
 # Programs to run on startup
-exec i3-msg "workspace $ws1"; exec vivaldi
+exec i3-msg "workspace $ws1"; exec qutebrowser
 #exec i3-msg "workspace $ws2"; exec konsole --noclose -e "zsh -c \"neofetch; zsh\""
 # TODO: Make this work
 
