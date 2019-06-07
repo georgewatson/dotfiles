@@ -128,7 +128,7 @@
     dmenu = /usr/bin/dmenu -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb 'gray13' -nf 'azure4' -sb 'DodgerBlue3' -sf 'gray13'
 
     # browser for opening urls in context menu
-    browser = /usr/bin/vivaldi
+    browser = /usr/bin/qutebrowser
 
     frame_width = 0
 

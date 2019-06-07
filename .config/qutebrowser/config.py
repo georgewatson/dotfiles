@@ -29,6 +29,20 @@ c.backend = 'webengine'
 # Type: Bool
 c.auto_save.session = True
 
+# Default encoding to use for websites. The encoding must be a string
+# describing an encoding such as _utf-8_, _iso-8859-1_, etc.
+# Type: String
+c.content.default_encoding = 'utf-8'
+
+# Allow websites to share screen content. On Qt < 5.10, a dialog box is
+# always displayed, even if this is set to "true".
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.desktop_capture = 'ask'
+
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
@@ -54,6 +68,24 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # Type: Bool
 c.content.plugins = True
 
+# Allow websites to register protocol handlers via
+# `navigator.registerProtocolHandler`.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+config.set('content.register_protocol_handler', True, 'https://mail.google.com/*')
+
+# Allow websites to register protocol handlers via
+# `navigator.registerProtocolHandler`.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+config.set('content.register_protocol_handler', True, 'https://calendar.google.com/*')
+
 # Number of commands to save in the command history. 0: no history / -1:
 # unlimited
 # Type: Int
@@ -78,7 +110,7 @@ c.downloads.remove_finished = 5000
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
 # Type: ShellCommand
-c.editor.command = ['konsole', '-e', 'vim {}']
+c.editor.command = ['konsole', '-e', 'vim', '-f', '{}']
 
 # CSS border value for hints.
 # Type: String
@@ -87,6 +119,26 @@ c.hints.border = '1px solid #30b7f3'
 # Characters used for hint strings.
 # Type: UniqueCharString
 c.hints.chars = 'asdfjkleruivn'
+
+# Hide unmatched hints in rapid mode.
+# Type: Bool
+c.hints.hide_unmatched_rapid_hints = True
+
+# Minimum number of characters used for hint strings.
+# Type: Int
+c.hints.min_chars = 1
+
+# Mode to use for hints.
+# Type: String
+# Valid values:
+#   - number: Use numeric hints. (In this mode you can also type letters from the hinted element to filter and reduce the number of elements that are hinted.)
+#   - letter: Use the characters in the `hints.chars` setting.
+#   - word: Use hints words based on the html elements and the extra words.
+c.hints.mode = 'letter'
+
+# Make characters in hint strings uppercase.
+# Type: Bool
+c.hints.uppercase = True
 
 # Automatically enter insert mode if an editable element is focused
 # after loading the page.
@@ -108,6 +160,37 @@ c.statusbar.hide = False
 # Padding (in pixels) for the statusbar.
 # Type: Padding
 c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
+
+# Position of the status bar.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.statusbar.position = 'bottom'
+
+# List of widgets displayed in the statusbar.
+# Type: List of String
+# Valid values:
+#   - url: Current page URL.
+#   - scroll: Percentage of the current page position like `10%`.
+#   - scroll_raw: Raw percentage of the current page position like `10`.
+#   - history: Display an arrow when possible to go back/forward in history.
+#   - tabs: Current active tab, e.g. `2`.
+#   - keypress: Display pressed keys when composing a vi command.
+#   - progress: Progress bar for the current page loading.
+c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'progress']
+
+# Open new tabs (middleclick/ctrl+click) in the background.
+# Type: Bool
+c.tabs.background = True
+
+# Mouse button with which to close tabs.
+# Type: String
+# Valid values:
+#   - right: Close tabs on right-click.
+#   - middle: Close tabs on middle-click.
+#   - none: Don't close tabs using the mouse.
+c.tabs.close_mouse_button = 'middle'
 
 # Scaling factor for favicons in the tab bar. The tab size is unchanged,
 # so big favicons also require extra `tabs.padding`.
@@ -136,9 +219,25 @@ c.tabs.last_close = 'ignore'
 # Type: Bool
 c.tabs.mousewheel_switching = True
 
+# Position of new tabs opened from another tab. See
+# `tabs.new_position.stacking` for controlling stacking behavior.
+# Type: NewTabPosition
+# Valid values:
+#   - prev: Before the current tab.
+#   - next: After the current tab.
+#   - first: At the beginning.
+#   - last: At the end.
+c.tabs.new_position.related = 'next'
+
+# Stack related tabs on top of each other when opened consecutively.
+# Only applies for `next` and `prev` values of
+# `tabs.new_position.related` and `tabs.new_position.unrelated`.
+# Type: Bool
+c.tabs.new_position.stacking = True
+
 # Padding (in pixels) around text for tabs.
 # Type: Padding
-c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 9, 'right': 5}
+c.tabs.padding = {'bottom': 3, 'left': 9, 'right': 5, 'top': 3}
 
 # When switching tabs, what input mode is applied.
 # Type: String
@@ -207,6 +306,10 @@ c.tabs.indicator.padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
 # Type: Bool
 c.tabs.pinned.shrink = True
 
+# Force pinned tabs to stay at fixed URL.
+# Type: Bool
+c.tabs.pinned.frozen = True
+
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
 # placeholder. The placeholder will be replaced by the search term, use
@@ -264,7 +367,7 @@ c.colors.completion.item.selected.border.top = '#30b7f3'
 c.colors.completion.item.selected.border.bottom = '#30b7f3'
 
 # Foreground color of the matched text in the completion.
-# Type: QssColor
+# Type: QtColor
 c.colors.completion.match.fg = '#63f330'
 
 # Color of the scrollbar handle in the completion view.
@@ -336,39 +439,39 @@ c.colors.hints.match.fg = '#333333'
 
 # Text color for the keyhint widget.
 # Type: QssColor
-c.colors.keyhint.fg = '#ffffff'
+c.colors.keyhint.fg = '#cccccc'
 
 # Highlight color for keys to complete the current keychain.
 # Type: QssColor
-c.colors.keyhint.suffix.fg = '#333333'
+c.colors.keyhint.suffix.fg = '#30b7f3'
 
 # Background color of the keyhint widget.
 # Type: QssColor
-c.colors.keyhint.bg = '#30b7f3'
+c.colors.keyhint.bg = '#333333'
 
 # Foreground color of an error message.
 # Type: QssColor
-c.colors.messages.error.fg = 'white'
+c.colors.messages.error.fg = '#f33051'
 
 # Background color of an error message.
 # Type: QssColor
-c.colors.messages.error.bg = '#f33051'
+c.colors.messages.error.bg = '#333333'
 
 # Border color of an error message.
 # Type: QssColor
-c.colors.messages.error.border = '#f33051'
+c.colors.messages.error.border = '#333333'
 
 # Foreground color of a warning message.
 # Type: QssColor
-c.colors.messages.warning.fg = '#333333'
+c.colors.messages.warning.fg = '#f3df30'
 
 # Background color of a warning message.
 # Type: QssColor
-c.colors.messages.warning.bg = '#f3df30'
+c.colors.messages.warning.bg = '#333333'
 
 # Border color of a warning message.
 # Type: QssColor
-c.colors.messages.warning.border = '#f3df30'
+c.colors.messages.warning.border = '#333333'
 
 # Foreground color of an info message.
 # Type: QssColor
@@ -577,7 +680,7 @@ c.fonts.downloads = '11pt monospace'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 11pt monospace'
+c.fonts.hints = '11pt monospace'
 
 # Font used in the keyhint widget.
 # Type: Font
@@ -640,8 +743,11 @@ config.bind('<Alt+Left>', 'tab-prev')
 config.bind('<Alt+Right>', 'tab-next')
 config.bind('<Space>x', 'tab-close')
 config.bind('`', 'set-cmd-text -s :quickmark-load')
+config.bind('e', 'open-editor')
 config.bind('gT', 'tab-prev')
 config.bind('gt', 'tab-next')
 config.bind('h', 'back')
 config.bind('l', 'forward')
 config.bind('t', 'set-cmd-text -s :buffer')
+config.bind('m', 'spawn mpv {url}')
+config.bind('M', 'hint links spawn mpv {hint-url}')

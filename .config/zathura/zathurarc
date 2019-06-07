@@ -1,5 +1,3 @@
-# Solarized dark
-
 set font                        "FuraCode Nerd Font 11"
 set default-bg                  "#333333"
 set default-fg                  "#cccccc"
@@ -41,6 +39,6 @@ set recolor-keephue             "true"
 set selection-clipboard clipboard
 
 # Disable the statusbar
-set guioptions ""
+set guioptions                  ""
 
-set adjust-open "width"
+set adjust-open                 "width"
