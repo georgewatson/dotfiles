@@ -1,10 +1,5 @@
 let b:names = []
 
-match none
-let &colorcolumn=join(range(998,999),",")
-autocmd BufEnter * highlight OverLength ctermfg=gray
-autocmd BufEnter * match OverLength /\%999v.*/
-
 function! Hash(str)
   let num = 0
   for chr in split(a:str, '\zs')
@@ -20,7 +15,7 @@ function! DoName(name)
   let ptrn = substitute(a:name, '[^a-zA-Z0-9_@. ]', '\\S\\?', 'g')
   let clr  = Hash(key)
 
-  exec 'syn match c'.clr.'"\t'.ptrn.'\t"'
+  exec 'syn match c'.clr.' "\<'.ptrn.'\>"'
   exec 'syn cluster ircNames add=c' . clr
   exec 'hi def c'.clr.' ctermfg=' . clr
 endfunction
@@ -34,11 +29,11 @@ function! DoNames()
   endfor
 endfunction
 
-syn match ircSpeaker "\v(\t[-+*@ ]*)?[a-zA-Z0-9#\[\]\{\}|_@. ]+\t"            contained contains=@ircNames skipwhite nextgroup=ircName
+syn match ircSpeaker "\v(\<[-+*@ ]*)?[a-zA-Z0-9#\[\]\{\}|_@. ]+[:>]\s"            contained contains=@ircNames skipwhite nextgroup=ircName
 syn match ircName    "\v[a-zA-Z0-9#-|_@.]+:\s"                                    contained contains=@ircNames skipwhite nextgroup=ircName
 syn match ircMsg    "\v(.+)$"                                                     contained contains=ircName   skipwhite nextgroup=ircName
 syn match ircError  "\v(error)"
-syn match ircDate    "\v[0-9]+-[0-9]+-[0-9]+ [0-9]+:[0-9]+:[0-9]+"     contained                    skipwhite nextgroup=ircSys,ircSpeaker
+syn match ircDate    "\v([\(\[]?[0-9-]* *\d\d:\d\d(:\d\d)?[APMapm]*[)\]]?|^)"     contained                    skipwhite nextgroup=ircSys,ircSpeaker
 syn match ircDo     "\v\&.+"                                                      contains=@ircDate
 syn match ircSys     "\v^Conversation.*"                                          contained
 syn match ircSys     "\v(\w|\>|-)+[^:<]\s.*"                                      contained contains=@ircNames
@@ -59,19 +54,33 @@ syn cluster ircColors contains=ircDecr,ircIncr
 
 hi def comment Comment
 
-hi ircDo      ctermfg=002
-hi ircMsg     ctermfg=003
-hi ircError   ctermfg=004
-hi ircFile    ctermfg=005
+if &t_Co > 255
+  hi ircDo      ctermfg=197 ctermbg=000 cterm=bold
+  hi ircMsg     ctermfg=250 ctermbg=000 cterm=none
+  hi ircError   ctermfg=196 ctermbg=000 cterm=bold
+  hi ircFile    ctermfg=220 ctermbg=000 cterm=bold
 
-hi ircSys     ctermfg=006
-hi ircDate    ctermfg=10
-hi ircURL     ctermfg=6
-hi ircIncr    ctermfg=009
-hi ircDecr    ctermfg=010
-hi ircName    ctermfg=3
-hi ircSpeaker ctermfg=4
+  hi ircSys     ctermfg=241 ctermbg=000 cterm=none
+  hi ircDate    ctermfg=245 ctermbg=235 cterm=bold
+  hi ircURL     ctermfg=027 ctermbg=000 cterm=bold
+  hi ircIncr    ctermfg=034 ctermbg=000 cterm=bold
+  hi ircDecr    ctermfg=196 ctermbg=000 cterm=bold
+  hi ircName    ctermfg=172 ctermbg=000 cterm=bold
+  hi ircSpeaker ctermfg=137 ctermbg=233 cterm=bold
 
-set nolist
+else
+  hi ircDo      ctermfg=002 ctermbg=000 cterm=bold
+  hi ircMsg     ctermfg=003 ctermbg=000 cterm=none
+  hi ircError   ctermfg=004 ctermbg=000 cterm=bold
+  hi ircFile    ctermfg=005 ctermbg=000 cterm=bold
+
+  hi ircSys     ctermfg=006 ctermbg=000 cterm=none
+  hi ircDate    ctermfg=007 ctermbg=235 cterm=bold
+  hi ircURL     ctermfg=010 ctermbg=000 cterm=bold
+  hi ircIncr    ctermfg=009 ctermbg=000 cterm=bold
+  hi ircDecr    ctermfg=010 ctermbg=000 cterm=bold
+  hi ircName    ctermfg=011 ctermbg=000 cterm=bold
+  hi ircSpeaker ctermfg=012 ctermbg=233 cterm=bold
+endif
 
 let b:current_syntax = "irc"

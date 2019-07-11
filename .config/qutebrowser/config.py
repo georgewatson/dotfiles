@@ -213,7 +213,7 @@ c.tabs.favicons.show = 'always'
 #   - startpage: Load the start page.
 #   - default-page: Load the default page.
 #   - close: Close the window.
-c.tabs.last_close = 'ignore'
+c.tabs.last_close = 'close'
 
 # Switch between tabs using the mouse wheel.
 # Type: Bool
@@ -741,13 +741,15 @@ c.fonts.web.size.minimum = 0
 # Bindings for normal mode
 config.bind('<Alt+Left>', 'tab-prev')
 config.bind('<Alt+Right>', 'tab-next')
+config.bind('<Space>M', 'hint links spawn mpv {hint-url}')
+config.bind('<Space>m', 'spawn mpv {url}')
 config.bind('<Space>x', 'tab-close')
-config.bind('`', 'set-cmd-text -s :quickmark-load')
+config.bind('M', 'quickmark-save')
+config.bind('`', 'set-cmd-text -s :jump-mark')
 config.bind('e', 'open-editor')
 config.bind('gT', 'tab-prev')
 config.bind('gt', 'tab-next')
 config.bind('h', 'back')
 config.bind('l', 'forward')
+config.bind('m', 'set-cmd-text -s :set-mark')
 config.bind('t', 'set-cmd-text -s :buffer')
-config.bind('m', 'spawn mpv {url}')
-config.bind('M', 'hint links spawn mpv {hint-url}')
