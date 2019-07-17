@@ -292,7 +292,6 @@ set guifont=DejaVuSansMono\ Nerd\ Font\ Book\ 11
 if has("autocmd")
     au BufNewFile,BufRead *.nml set filetype=fortran
     au BufNewFile,BufRead *.namelist set filetype=fortran
-    au BufNewFile,BufRead *.in set filetype=fortran
 endif
 
 "nnoremap <Leader>o :tabe<space>

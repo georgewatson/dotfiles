@@ -3,7 +3,7 @@
 export TERM="xterm-256color"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/userfs/g/gw639/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -13,7 +13,7 @@ export ZSH=/home/userfs/g/gw639/.oh-my-zsh
 
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir vcs dir_writable)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir virtualenv vcs dir_writable)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status command_execution_time background_jobs time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=
 POWERLEVEL9K_STATUS_VERBOSE=true
@@ -26,10 +26,11 @@ POWERLEVEL9K_CARRIAGE_RETURN_ICON=""
 POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
 POWERLEVEL9K_VI_INSERT_MODE_STRING="INS"
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="NOR"
-POWERLEVEL9K_VCS_GIT_ICON=""
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uf113"
+POWERLEVEL9K_VCS_GIT_ICON=" "
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uf113 "
 POWERLEVEL9K_SHOW_CHANGESET="true"
 POWERLEVEL9k_BACKGROUND_JOBS_ICON=""
+POWERLEVEL9K_VIRTUALENV_ICON=""
 POWERLEVEL9K_VCS_GIT_HOOKS=(git-untracked git-aheadbehind git-stash git-remotebranch vcs-detect-changes git-tagname)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -71,6 +72,8 @@ POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="clear"
 POWERLEVEL9K_VI_MODE_COMMAND_BACKGROUND="clear"
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="clear"
 POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND="clear"
+POWERLEVEL9K_VIRTUALENV_BACKGROUND="clear"
+POWERLEVEL9K_VIRTUALENV_FOREGROUND="green"
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -186,8 +189,6 @@ alias viv="vivaldi </dev/null >/dev/null 2>&1 & disown"
 alias kraken="gitkraken </dev/null >/dev/null 2>&1 & disown"
 alias tasks="while true; do clear; task next; sleep 10; done"
 
-export AMBERHOME="/software/Ambertools16/amber16"
-
 # From $AMBERHOME/amber.sh
 export PATH="${AMBERHOME}/bin:${PATH}"
 # Add location of Amber Python modules to default Python search path
@@ -274,10 +275,6 @@ setopt no_share_history
 ##zle -N zle-line-init
 #zle -N zle-line-finish
 
-# For 3DNA
-export X3DNA="/software/x3dna-v2.3"
-export PATH="/software/x3dna-v2.3/bin:$PATH"
-
 # Custom continuation prompt
 export PS2="%F{blue}        %F{normal}"
 
@@ -294,15 +291,6 @@ alias mvr=rsync-move # Use only when copying between partitions
 # ~: AND NOT (e.g. *.pdb~*.min.pdb matches foo.pdb but not foo.min.pdb)
 # Also allows fuzzy matching (e.g. (#a1)foo matches boo and ofo)
 setopt extended_glob
-
-# Standard error in red; requires git:sickill/stderred
-export LD_PRELOAD="/home/userfs/g/gw639/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
-
-# Add gem executables to path
-export PATH=$PATH:'/home/userfs/g/gw639/.gem/ruby/2.3.0/bin'
-
-# Add custom scripts to END of $PATH
-export PATH=$PATH:'/home/userfs/g/gw639/myscripts'
 
 # Disable hostname completion
 zstyle ':completion:*' hosts off

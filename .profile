@@ -26,6 +26,6 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # Custom stuff starts here
-export AMBERHOME="/software/Ambertools16/amber16"
+export AMBERHOME="/software/Ambertools18/amber18"
 export PATH="/home/userfs/g/gw639/.npm-global/bin:$PATH"
 export PATH="/software/bin:$PATH"
