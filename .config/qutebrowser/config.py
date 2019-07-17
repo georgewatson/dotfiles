@@ -41,7 +41,7 @@ c.content.default_encoding = 'utf-8'
 #   - true
 #   - false
 #   - ask
-c.content.desktop_capture = 'ask'
+# c.content.desktop_capture = 'ask'
 
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
@@ -54,15 +54,15 @@ c.content.headers.custom = {}
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'file://*')
+# config.set('content.javascript.enabled', True, 'file://*')
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'chrome://*/*')
+# config.set('content.javascript.enabled', True, 'chrome://*/*')
 
 # Enable JavaScript.
 # Type: Bool
-config.set('content.javascript.enabled', True, 'qute://*/*')
+# config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # Enable plugins in Web pages.
 # Type: Bool
@@ -75,7 +75,7 @@ c.content.plugins = True
 #   - true
 #   - false
 #   - ask
-config.set('content.register_protocol_handler', True, 'https://mail.google.com/*')
+# config.set('content.register_protocol_handler', True, 'https://mail.google.com/*')
 
 # Allow websites to register protocol handlers via
 # `navigator.registerProtocolHandler`.
@@ -84,7 +84,7 @@ config.set('content.register_protocol_handler', True, 'https://mail.google.com/*
 #   - true
 #   - false
 #   - ask
-config.set('content.register_protocol_handler', True, 'https://calendar.google.com/*')
+# config.set('content.register_protocol_handler', True, 'https://calendar.google.com/*')
 
 # Validate SSL handshakes.
 # Type: BoolAsk
