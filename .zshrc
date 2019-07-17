@@ -22,8 +22,8 @@ POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_SSH_ICON="\uf0c1"
 #POWERLEVEL9K_CARRIAGE_RETURN_ICON="↵"
 POWERLEVEL9K_CARRIAGE_RETURN_ICON=""
-#POWERLEVEL9K_EXECUTION_TIME_ICON=""
-POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
+POWERLEVEL9K_EXECUTION_TIME_ICON=""
+#POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
 POWERLEVEL9K_VI_INSERT_MODE_STRING="INS"
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="NOR"
 POWERLEVEL9K_VCS_GIT_ICON=" "
@@ -39,11 +39,12 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%} "
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%F{white}"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%F{default} "
 
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=' '
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-#POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' '
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="clear"
 POWERLEVEL9K_SSH_BACKGROUND="clear"
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
@@ -57,7 +58,7 @@ POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="blue"
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="blue"
 POWERLEVEL9K_TIME_BACKGROUND="clear"
-POWERLEVEL9K_TIME_FOREGROUND="white"
+POWERLEVEL9K_TIME_FOREGROUND="014"
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="clear"
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND="green"
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="clear"
@@ -175,7 +176,7 @@ bindkey -M vicmd e edit-command-line
 
 TIMEFMT=$'%J\nReal\t%*E\nUser\t%*U\nSystem\t%*S\n%P CPU'
 
-DEFAULT_USER="gw639"
+DEFAULT_USER="george"
 
 setopt autocd
 #setopt histignorealldups
@@ -183,51 +184,10 @@ unsetopt histignorealldups
 setopt promptsubst
 
 export EDITOR=vim
-export BROWSER=vivaldi
-
-alias viv="vivaldi </dev/null >/dev/null 2>&1 & disown"
-alias kraken="gitkraken </dev/null >/dev/null 2>&1 & disown"
-alias tasks="while true; do clear; task next; sleep 10; done"
-
-# From $AMBERHOME/amber.sh
-export PATH="${AMBERHOME}/bin:${PATH}"
-# Add location of Amber Python modules to default Python search path
-if [ -z "$PYTHONPATH" ]; then
-    export PYTHONPATH="${AMBERHOME}/lib/python2.7/site-packages"
-else
-    export PYTHONPATH="${AMBERHOME}/lib/python2.7/site-packages:${PYTHONPATH}"
-fi
-if [ -z "${LD_LIBRARY_PATH}" ]; then
-   export LD_LIBRARY_PATH="${AMBERHOME}/lib"
-else
-   export LD_LIBRARY_PATH="${AMBERHOME}/lib:${LD_LIBRARY_PATH}"
-fi
-
-# Source rupa/z
-#. ~/scripts/z.sh
-
-# Font maps
-source ~/.fonts/*.sh
+export BROWSER=qutebrowser
 
 # Solarized colours in ls
 eval `dircolors ~/.dircolors`
-
-## History stuff
-### Command history configuration
-#if [ -z "$HISTFILE" ]; then
-#    HISTFILE=$HOME/.zsh_history
-#fi
-#
-#HISTSIZE=10000
-#SAVEHIST=10000
-#
-## Show history
-#case $HIST_STAMPS in
-#  "mm/dd/yyyy") alias history='fc -fl 1' ;;
-#  "dd.mm.yyyy") alias history='fc -El 1' ;;
-#  "yyyy-mm-dd") alias history='fc -il 1' ;;
-#  *) alias history='fc -l 1' ;;
-#esac
 
 setopt append_history
 setopt extended_history
@@ -236,6 +196,7 @@ setopt hist_ignore_dups # ignore duplication command history list
 setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
+#setopt share_history
 
 unsetopt share_history
 setopt no_share_history
@@ -309,4 +270,31 @@ alias irssi='TERM=screen-256color irssi'
 
 alias gcasm='git commit -a -S -m'
 
+# Make connecting to the university VPN easier
+alias yorkvpn='/usr/local/pulse/pulsesvc -h webvpn.york.ac.uk -u gw639 -r york_users_realm'
+alias vpnstatus='/usr/local/pulse/pulsesvc -S'
+
+# thefuck
+eval $(thefuck --alias)
+
+# Open rtv content in a new browser window
+export RTV_BROWSER='qutebrowser'
+
+alias dropdown='nohup konsole -name __dropdown &'
+alias feh='feh --scale-down --auto-zoom --image-bg "#333333"'
+alias neofetch='neofetch --ascii ~/gw.ascii --ascii_colors 1 2 3 4 5 6'
+
+# Open .md file in vim & .pdf in zathura simultaneously
+note () {
+    echo "${1:r}.pdf"
+    zathura "${1:r}.pdf" &
+    vim "${1:r}.md"
+}
+
 source ~/.zshrc.local
+
+PATH="/home/george/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/george/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/george/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/george/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/george/perl5"; export PERL_MM_OPT;

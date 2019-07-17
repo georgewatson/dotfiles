@@ -1,0 +1,11 @@
+* {
+    font-family: FuraCode Nerd Font !important;
+}
+.tab {
+    color: #cccccc !important;
+    font-size: 11pt !important;
+}
+.tab.active {
+    color: #333333 !important;
+}
+

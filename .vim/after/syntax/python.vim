@@ -27,9 +27,15 @@ syntax match pyNiceOperator "\<not in\>" conceal cchar=∉
 
 syntax keyword pyNiceKeyword None conceal cchar=Ø
 
+syntax keyword pyNiceKeyword True conceal cchar=𝐓
+syntax keyword pyNiceKeyword False conceal cchar=𝐅
+
 syntax keyword pyNiceOperator sum conceal cchar=∑
 syntax match pyNiceOperator "\<\%(math\.\)\?sqrt\>" conceal cchar=√
 syntax match pyNiceKeyword "\<\%(math\.\)\?pi\>" conceal cchar=π
+
+syntax match pyNiceOperator "*" conceal cchar=×
+syntax match pyNiceOperator "\*\*" conceal cchar=^
 
 syntax keyword pyNiceOperator lambda conceal cchar=λ
 syntax keyword pyNiceOperator for conceal cchar=∀
@@ -41,12 +47,16 @@ syntax keyword pyNiceOperator elif conceal cchar=▹
 "syntax keyword pyNiceOperator else conceal cchar=✘
 syntax keyword pyNiceOperator else conceal cchar=∎
 "syntax keyword pyNiceOperator break conceal cchar=↯
-syntax keyword pyNiceOperator def conceal cchar=⁕
+syntax keyword pyNiceOperator def conceal cchar=λ
+"syntax keyword pyNiceOperator def conceal cchar=⁕
+"
 syntax keyword pyNiceOperator class conceal cchar=§
 
-syntax keyword pyNiceFunction str conceal cchar=`
+syntax keyword pyNiceFunction str conceal cchar=“
 syntax keyword pyNiceFunction int conceal cchar=ℤ
 syntax keyword pyNiceFunction float conceal cchar=ℝ
+
+syntax keyword pyNiceFunction map conceal cchar=ⓜ
 
 syntax keyword pyNormal alpha conceal cchar=α
 syntax keyword pyNormal beta conceal cchar=β

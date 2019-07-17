@@ -33,7 +33,7 @@ syntax keyword cNiceOperator else conceal cchar=∎
 syntax match cNiceOperator "\<el\%(se\)\%( \)\?if\>" conceal cchar=▹
 "syntax keyword cNiceOperator exit conceal cchar=↯
 
-syntax keyword cNiceFunction str conceal cchar=`
+syntax keyword pyNiceFunction str conceal cchar=“
 syntax keyword cNiceType int conceal cchar=ℤ
 syntax keyword cNiceType real conceal cchar=ℝ
 syntax keyword cNiceType double conceal cchar=D

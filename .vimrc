@@ -20,10 +20,14 @@ Plugin 'KeitaNakamura/tex-conceal.vim'
 " Haskell (mostly replicated by FiraCode font ligatures;
 " non-duplicated bits in " ~/.vim/after/syntax/haskell.vim)
 "Plugin 'Twinside/vim-haskellConceal'
+" Even more Haskell
+Plugin 'enomsg/vim-haskellConcealPlus'
 
 " Airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" Or Buftabline if buffer-tabs are all I want
+Plugin 'ap/vim-buftabline'
 
 " Solarized colours
 Plugin 'altercation/vim-colors-solarized'
@@ -45,7 +49,7 @@ Plugin 'tpope/vim-fugitive'
 " Hard mode
 "Plugin 'wikitopian/hardmode'
 " OR Hardtime
-Plugin 'takac/vim-hardtime'
+"Plugin 'takac/vim-hardtime'
 
 " Show marks
 Plugin 'jacquesbh/vim-showmarks'
@@ -54,25 +58,41 @@ Plugin 'jacquesbh/vim-showmarks'
 " Plugin 'thaerkh/vim-indentguides'
 
 " Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 
 " Ack/ag support
-Plugin 'mileszs/ack.vim'
+"Plugin 'mileszs/ack.vim'
 
 " Define indentation levels as vim objects
-Plugin 'michaeljsmith/vim-indent-object'
+"Plugin 'michaeljsmith/vim-indent-object'
 
 " CtrlP interface for opening files
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 " Tmuxline
-Plugin 'edkolev/tmuxline.vim'
+"Plugin 'edkolev/tmuxline.vim'
 
 " View buffers on "/@/C-r
 Plugin 'junegunn/vim-peekaboo'
 
 " Vimwiki
-Plugin 'vimwiki/vimwiki'
+"Plugin 'vimwiki/vimwiki'
+
+" Pandoc
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+" Dispatch
+Plugin 'tpope/vim-dispatch'
+
+" Live preview for :s etc.
+Plugin 'markonm/traces.vim'
+
+" Work with surrounds/delimiters
+Plugin 'tpope/vim-surround'
+
+" Handle Liquid files properly
+Plugin 'tpope/vim-liquid'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -164,8 +184,8 @@ endif
 
 " Make it obvious where 80 characters is
 set textwidth=80
-let &colorcolumn=join(range(81,999),",")
-autocmd BufEnter * highlight OverLength ctermfg=darkred
+"let &colorcolumn=join(range(81,999),",")
+autocmd BufEnter * highlight OverLength ctermfg=darkred ctermbg=black
 autocmd BufEnter * match OverLength /\%81v.*/
 
 " Numbers
@@ -221,7 +241,7 @@ let g:syntastic_eruby_ruby_quiet_messages =
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spelllang=en
+set spelllang=en_gb
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
@@ -243,6 +263,8 @@ filetype indent on
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+let g:Tex_ViewRule_pdf='zathura'
+let g:Tex_ViewRuleComplete_pdf='zathura $*.pdf &'
 
 " Additional concealment
 set conceallevel=2
@@ -258,14 +280,21 @@ let g:airline_powerline_fonts = 1
 " Let airline know about ale
 let g:airline#extensions#ale#enabled = 1
 
+" Set up buftabline
+let g:buftabline_indicators = 1
+
 " Navigate around ale matches easily
 nmap <C-h> <Plug>(ale_previous_wrap)
 nmap <C-l> <Plug>(ale_next_wrap)
 " Nicer gutter symbols for errors and warnings
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '?'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 " Let ale show the loclist
 let g:ale_open_list = 'on_save'
+" Other settings
+let g:ale_completion_enabled = 1
+let g:ale_fortran_gcc_executable = 'gfortran'
+let b:ale_linters = {'javascript': ['standard', 'eslint']}
 
 "" Set up Syntastic
 "set statusline+=%#warningmsg#
@@ -280,7 +309,33 @@ let g:ale_open_list = 'on_save'
 " Colour scheme
 syntax enable
 set background=dark
+let g:solarized_termcolors=16
+let g:solarized_bold=1
+let g:solarized_italic=1
+let g:solarized_underline=1
+let g:solarized_termtrans = 1
 colorscheme solarized
+highlight clear LineNr
+highlight LineNr ctermfg=10
+highlight CursorLineNr ctermfg=4
+highlight clear CursorLine
+highlight EndOfBuffer ctermfg=black
+" Diffs and gitgutter
+highlight clear DiffAdd
+highlight DiffAdd ctermfg=2
+highlight clear DiffChange
+highlight DiffChange ctermfg=3
+highlight clear DiffDelete
+highlight DiffDelete ctermfg=1
+" Menus and buftabline
+highlight clear TabLine
+highlight clear TabLineFill
+highlight clear TabLineSel
+highlight TabLineSel ctermfg=black ctermbg=4
+" Misspellings
+highlight SpellBad cterm=underline term=underline gui=undercurl
+" Invert colours in visual mode
+highlight Visual cterm=reverse ctermfg=none ctermbg=none
 
 " Open multiple files in tabs
 ":au BufAdd,BufNewFile,BufRead * nested tab sball
@@ -301,7 +356,7 @@ nnoremap <Leader>e :edit<space>
 nnoremap gt :bn<CR>
 nnoremap gT :bp<CR>
 nnoremap <Leader>g :bu<space>
-nnoremap <Leader>w :w<CR>
+"nnoremap <Leader>w :w<CR>
 nnoremap <Leader><Leader> :w<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
@@ -320,6 +375,9 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 map q: :q
 
+" Make Y consistent with C and D
+nnoremap Y y$
+
 " Highlight search results
 set hlsearch
 " But clear the highlights easily
@@ -327,9 +385,6 @@ map <silent> <leader><cr> :noh<cr>
 
 " Allow switching buffers without writing changes
 set hidden
-
-" Always show statusline
-set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
@@ -340,7 +395,7 @@ set t_Co=256
 "let g:hardtime_default_on = 1
 " Use <leader>h to toggle hard mode (or hardtime)
 "nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-nnoremap <leader>h <Esc>:HardTimeToggle<CR>
+"nnoremap <leader>h <Esc>:HardTimeToggle<CR>
 
 autocmd VimEnter,BufNewFile,BufReadPost * silent! DoShowMarks!
 
@@ -353,6 +408,8 @@ set updatetime=750
 
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
+let g:ale_python_pylint_executable = 'python3'
+let g:ale_python_pylint_options = '-m pylint'
 
 " Highlight the current line
 set cursorline
@@ -375,12 +432,25 @@ augroup END
 "nnoremap <C-l> <C-w>l
 
 " Insert new lines without entering insert mode
-nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 
 " Use Vim airline to define tmux statusline
 let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
+
+" Pandoc settings
+" Generate PDF on save
+"let g:pandoc#command#autoexec_on_writes = 1
+let g:pandoc#command#autoexec_command = "Pandoc pdf --toc --variable geometry:margin=1in --variable urlcolor=cyan"
+let g:pandoc#command#arguments = "pdf --toc --variable geometry:margin=1in"
+" Disable foldcolumn
+let g:pandoc#folding#fdc = 0
+" Folding is slow, so do it less
+let g:pandoc#folding#level = 2
+" Text width 80
+let g:pandoc#formatting#textwidth = 80
+let g:pandoc#formatting#smart_autoformat_on_cursor_moved = 0
+let g:pandoc#formatting#mode="ha"
 
 " Assume ambiguous-width characters are single-width
 set ambiwidth=single
@@ -397,7 +467,48 @@ endfunction
 nnoremap <silent> <leader>c :call ToggleConcealLevel()<CR>
 
 "Remove all trailing whitespace by pressing <leader>w
-nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>``<CR>
+
+" Highlight misspelt words in red
+" hi SpellBad cterm=underline ctermfg=red
+
+" Light up the caps-lock light on entering insert mode
+:autocmd! InsertEnter * silent! execute ('!xset led 1 led on &')
+" And turn it off on leaving
+:autocmd! InsertLeave * silent! execute ('!xset led 1 led off &')
+
+" Set syntax highlighting for IRC logs
+autocmd BufNewFile,BufRead *.irc set syntax=irc
+
+" gVim settings
+set guifont=FuraCode\ Nerd\ Font\ 11
+set guioptions=acgiLt
+
+nnoremap <leader>m :Make<CR>
+nnoremap <leader><S-m> :Make!<CR>
+
+" Uncomment for light mode
+"set background=light
+"let g:airline_solarized_bg='light'
+
+" Be brave and go statusline-free
+au VimEnter * set laststatus=1
+function! ToggleLaststatus()
+    if &laststatus == 2
+        set laststatus=1
+    elseif &laststatus == 1
+        set laststatus=2
+    endif
+    return
+endfunction
+nnoremap <leader>s :call ToggleLaststatus()<cr>
+" But have a nicer ruler
+set rulerformat=%=%#Type#\\ %l\/%L\ \\ %c
+" and make command-line messages shorter
+set shortmess=aWIF
+" And tabline-free if <2 buffers are open
+let g:airline#extensions#tabline#buffer_min_count=2
+let g:buftabline_show=1
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
