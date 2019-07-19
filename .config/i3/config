@@ -346,5 +346,5 @@ exec i3-msg "workspace $ws1"; exec qutebrowser
 #exec i3-msg "workspace $ws2"; exec konsole --noclose -e "zsh -c \"neofetch; zsh\""
 # TODO: Make this work
 
-# Use mod+v to use Vim anywhere
-bindsym $mod+v exec ~/.vim-anywhere/bin/run
+# Use mod+# to set layout
+bindsym $mod+numbersign exec ~/.dmenu-i3layout.sh

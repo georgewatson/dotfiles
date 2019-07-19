@@ -281,7 +281,7 @@ eval $(thefuck --alias)
 export RTV_BROWSER='qutebrowser'
 
 alias dropdown='nohup konsole -name __dropdown &'
-alias feh='feh --scale-down --auto-zoom --image-bg "#333333"'
+alias feh='feh --scale-down --auto-zoom --image-bg "#333333" --conversion-timeout 1'
 alias neofetch='neofetch --ascii ~/gw.ascii --ascii_colors 1 2 3 4 5 6'
 
 # Open .md file in vim & .pdf in zathura simultaneously

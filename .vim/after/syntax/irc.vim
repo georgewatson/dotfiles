@@ -84,3 +84,6 @@ else
 endif
 
 let b:current_syntax = "irc"
+
+set nolist
+autocmd BufEnter * highlight clear OverLength
