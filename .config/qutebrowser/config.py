@@ -86,6 +86,14 @@ config.set('content.register_protocol_handler', True, 'https://mail.google.com/*
 #   - ask
 config.set('content.register_protocol_handler', True, 'https://calendar.google.com/*')
 
+# List of user stylesheet filenames to use.
+# Type: List of File, or File
+c.content.user_stylesheets = 'ligatures.css'
+
+# Enable WebGL.
+# Type: Bool
+c.content.webgl = True
+
 # Number of commands to save in the command history. 0: no history / -1:
 # unlimited
 # Type: Int
@@ -741,16 +749,17 @@ c.fonts.web.size.minimum = 0
 # Bindings for normal mode
 config.bind('<Alt+Left>', 'tab-prev')
 config.bind('<Alt+Right>', 'tab-next')
+config.bind('<Space>M', 'hint links spawn mpv {hint-url}')
 config.bind('<Space>e', 'edit-url')
 config.bind('<Space>m', 'spawn mpv {url}')
-config.bind('<Space>M', 'hint links spawn mpv {hint-url}')
+config.bind('<Space>p', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('<Space>x', 'tab-close')
+config.bind('M', 'quickmark-save')
 config.bind('`', 'enter-mode jump_mark')
 config.bind('e', 'open-editor')
-config.bind('gt', 'tab-next')
 config.bind('gT', 'tab-prev')
+config.bind('gt', 'tab-next')
 config.bind('h', 'back')
 config.bind('l', 'forward')
 config.bind('m', 'enter-mode set_mark')
-config.bind('M', 'quickmark-save')
 config.bind('t', 'set-cmd-text -s :buffer')
