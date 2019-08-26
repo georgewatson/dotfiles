@@ -99,6 +99,10 @@ c.content.webgl = True
 # Type: Int
 c.completion.cmd_history_max_items = 100
 
+# Remember the last used download directory.
+# Type: Bool
+c.downloads.location.remember = False
+
 # Where to show the downloaded files.
 # Type: VerticalPosition
 # Valid values:

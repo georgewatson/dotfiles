@@ -1,11 +1,11 @@
 #! /bin/bash
 
-res=$(dmenu -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#080808' -nf '#cccccc' -sb '#30b7f3' -sf '#333333' < ~/.dmenu-i3gaps)
+res=$(dmenu -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#333333' -nf '#cccccc' -sb '#30b7f3' -sf '#333333' < ~/.dmenu-i3gaps)
 
 if [ $res = "default" ]; then
     i3-msg gaps inner current set 20
     i3-msg gaps outer current set 0
-    i3-msg gaps horizontal current set 5
+    i3-msg gaps horizontal current set 4
 fi
 if [ $res = "reader" ]; then
     i3-msg gaps inner current set 0
