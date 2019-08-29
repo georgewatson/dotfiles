@@ -609,7 +609,7 @@ c.colors.statusbar.url.warn.fg = '#f38630'
 
 # Background color of the tab bar.
 # Type: QtColor
-c.colors.tabs.bar.bg = '#080808'
+c.colors.tabs.bar.bg = '#333333'
 
 # Color gradient start for the tab indicator.
 # Type: QtColor
@@ -638,7 +638,7 @@ c.colors.tabs.odd.fg = '#cccccc'
 
 # Background color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.bg = '#080808'
+c.colors.tabs.odd.bg = '#333333'
 
 # Foreground color of unselected even tabs.
 # Type: QtColor
@@ -646,7 +646,7 @@ c.colors.tabs.even.fg = '#cccccc'
 
 # Background color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.bg = '#080808'
+c.colors.tabs.even.bg = '#333333'
 
 # Foreground color of selected odd tabs.
 # Type: QtColor
@@ -728,11 +728,11 @@ c.fonts.web.family.standard = '"Arial", "Noto Sans", "Noto Color Emoji", sans-se
 
 # Font family for fixed fonts.
 # Type: FontFamily
-c.fonts.web.family.fixed = 'monospace, "Noto Sans Mono", "Noto Color Emoji"'
+c.fonts.web.family.fixed = '"FuraCode Nerd Font", "Noto Sans Mono", "Noto Color Emoji", monospace'
 
 # Font family for serif fonts.
 # Type: FontFamily
-c.fonts.web.family.serif = '"Times New Roman", "Noto Serif", "Noto Color Emoji", serif'
+c.fonts.web.family.serif = '"Linux Libertine O", "Linux Libertine", "Noto Serif", "Noto Color Emoji", serif'
 
 # Font family for sans-serif fonts.
 # Type: FontFamily
@@ -749,6 +749,15 @@ c.fonts.web.size.default_fixed = 11
 # Hard minimum font size (in pixels).
 # Type: Int
 c.fonts.web.size.minimum = 0
+
+# This setting can be used to map keys to other keys. When the key used
+# as dictionary-key is pressed, the binding for the key used as
+# dictionary-value is invoked instead. This is useful for global
+# remappings of keys, for example to map Ctrl-[ to Escape. Note that
+# when a key is bound (via `bindings.default` or `bindings.commands`),
+# the mapping is ignored.
+# Type: Dict
+c.bindings.key_mappings = {'<Ctrl+6>': '<Ctrl+^>', '<Ctrl+Enter>': '<Ctrl+Return>', '<Ctrl+j>': '<Return>', '<Ctrl+m>': '<Return>', '<Ctrl+[>': '<Escape>', '<Enter>': '<Return>', '<Shift+Enter>': '<Return>', '<Shift+Return>': '<Return>', '<Σ>': 's', '<Ε>': 'e', '<Ρ>': 'r', '<Τ>': 't', '<Υ>': 'y', '<Θ>': 'u', '<Ι>': 'i', '<Ο>': 'o', '<Π>': 'p', '<Α>': 'a', '<Δ>': 'd', '<Φ>': 'f', '<Γ>': 'g', '<Η>': 'h', '<Ξ>': 'j', '<Κ>': 'k', '<Λ>': 'l', '<Ζ>': 'z', '<Χ>': 'x', '<Ψ>': 'c', '<Ω>': 'v', '<Β>': 'b', '<Ν>': 'n', '<Μ>': 'm', '<Shift+Ε>': 'E', '<Shift+Ρ>': 'R', '<Shift+Τ>': 'T', '<Shift+Υ>': 'Y', '<Shift+Θ>': 'U', '<Shift+Ι>': 'I', '<Shift+Ο>': 'O', '<Shift+Π>': 'P', '<Shift+Α>': 'A', '<Shift+Σ>': 'S', '<Shift+Δ>': 'D', '<Shift+Φ>': 'F', '<Shift+Γ>': 'G', '<Shift+Η>': 'H', '<Shift+Ξ>': 'J', '<Shift+Κ>': 'K', '<Shift+Λ>': 'L', '<Shift+Ζ>': 'Z', '<Shift+Χ>': 'X', '<Shift+Ψ>': 'C', '<Shift+Ω>': 'V', '<Shift+Β>': 'B', '<Shift+Ν>': 'N', '<Shift+Μ>': 'M'}
 
 # Bindings for normal mode
 config.bind('<Alt+Left>', 'tab-prev')

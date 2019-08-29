@@ -385,6 +385,9 @@ set shortmess=aWIF
 " And go tabline-free if <2 buffers are open
 let g:buftabline_show=1
 
+" For Greek
+set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz,¨:,´\\\;
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
