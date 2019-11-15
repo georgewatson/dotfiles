@@ -86,6 +86,14 @@ config.set('content.register_protocol_handler', True, 'https://mail.google.com/*
 #   - ask
 config.set('content.register_protocol_handler', True, 'https://calendar.google.com/*')
 
+# Validate SSL handshakes.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+c.content.ssl_strict = 'ask'
+
 # List of user stylesheet filenames to use.
 # Type: List of File, or File
 c.content.user_stylesheets = 'ligatures.css'
@@ -269,17 +277,17 @@ c.tabs.title.alignment = 'left'
 
 # Format to use for the tab title. The following placeholders are
 # defined:  * `{perc}`: Percentage as a string like `[10%]`. *
-# `{perc_raw}`: Raw percentage, e.g. `10`. * `{title}`: Title of the
-# current web page. * `{title_sep}`: The string ` - ` if a title is set,
-# empty otherwise. * `{index}`: Index of this tab. * `{id}`: Internal
-# tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
+# `{perc_raw}`: Raw percentage, e.g. `10`. * `{current_title}`: Title of
+# the current web page. * `{title_sep}`: The string ` - ` if a title is
+# set, empty otherwise. * `{index}`: Index of this tab. * `{id}`:
+# Internal tab ID of this tab. * `{scroll_pos}`: Page scroll position. *
 # `{host}`: Host of the current web page. * `{backend}`: Either
 # ''webkit'' or ''webengine'' * `{private}`: Indicates when private mode
 # is enabled. * `{current_url}`: URL of the current web page. *
 # `{protocol}`: Protocol (http/https/...) of the current web page. *
 # `{audio}`: Indicator for audio/mute status.
 # Type: FormatString
-c.tabs.title.format = '{audio}{index} {title}'
+c.tabs.title.format = '{audio}{perc}{index}: {current_title}'
 
 # Format to use for the tab title for pinned tabs. The same placeholders
 # like for `tabs.title.format` are defined.
@@ -370,7 +378,7 @@ c.colors.completion.item.selected.fg = '#333333'
 # Type: QssColor
 c.colors.completion.item.selected.bg = '#30b7f3'
 
-# Top border color of the completion widget category headers.
+# Top border color of the selected completion item.
 # Type: QssColor
 c.colors.completion.item.selected.border.top = '#30b7f3'
 
@@ -446,7 +454,7 @@ c.colors.hints.fg = 'white'
 c.colors.hints.bg = '#30b7f3'
 
 # Font color for the matched part of hints.
-# Type: QssColor
+# Type: QtColor
 c.colors.hints.match.fg = '#333333'
 
 # Text color for the keyhint widget.
@@ -608,7 +616,7 @@ c.colors.statusbar.url.success.https.fg = '#cccccc'
 c.colors.statusbar.url.warn.fg = '#f38630'
 
 # Background color of the tab bar.
-# Type: QtColor
+# Type: QssColor
 c.colors.tabs.bar.bg = '#333333'
 
 # Color gradient start for the tab indicator.
@@ -663,6 +671,38 @@ c.colors.tabs.selected.even.fg = '#333333'
 # Background color of selected even tabs.
 # Type: QtColor
 c.colors.tabs.selected.even.bg = '#30b7f3'
+
+# Foreground color of pinned unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.odd.fg = '#cccccc'
+
+# Background color of pinned unselected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.odd.bg = '#333333'
+
+# Foreground color of pinned unselected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.even.fg = '#cccccc'
+
+# Background color of pinned unselected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.even.bg = '#333333'
+
+# Foreground color of pinned selected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.odd.fg = '#333333'
+
+# Background color of pinned selected odd tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.odd.bg = '#30b7f3'
+
+# Foreground color of pinned selected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.even.fg = '#333333'
+
+# Background color of pinned selected even tabs.
+# Type: QtColor
+c.colors.tabs.pinned.selected.even.bg = '#30b7f3'
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
@@ -766,6 +806,7 @@ config.bind('<Space>M', 'hint links spawn mpv {hint-url}')
 config.bind('<Space>e', 'edit-url')
 config.bind('<Space>m', 'spawn mpv {url}')
 config.bind('<Space>p', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
+config.bind('<Space>r', 'spawn --userscript readability-js')
 config.bind('<Space>x', 'tab-close')
 config.bind('M', 'quickmark-save')
 config.bind('`', 'enter-mode jump_mark')

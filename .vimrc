@@ -271,6 +271,8 @@ highlight TabLineSel ctermfg=black ctermbg=4
 highlight SpellBad cterm=underline term=underline gui=undercurl
 " Invert colours in visual mode
 highlight Visual cterm=reverse ctermfg=none ctermbg=none
+" Nicer colour for titles
+highlight! link Title Question
 
 nnoremap <Leader>o :edit<space>
 nnoremap <Leader>e :edit<space>
@@ -373,13 +375,15 @@ autocmd BufNewFile,BufRead *.irc set syntax=irc
 set guifont=FuraCode\ Nerd\ Font\ 11
 set guioptions=acgiLt
 
+set autowrite
+
 nnoremap <leader>m :Make<CR>
 nnoremap <leader><S-m> :Make!<CR>
 
 " Be brave and go statusline-free
 au VimEnter * set laststatus=0
 " But have a nicer ruler
-set rulerformat=%=%#Type#%L\ \L\,\ \C\ %c
+set rulerformat=%=%#Type#%m\ %L\ \L\,\ \C\ %c
 " and make command-line messages shorter
 set shortmess=aWIF
 " And go tabline-free if <2 buffers are open

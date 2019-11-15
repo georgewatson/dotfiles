@@ -36,7 +36,6 @@ bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#002B36' -nf '#839496' -sb '#268BD2' -sf '#002B36'"
 bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#333333' -nf '#cccccc' -sb '#30b7f3' -sf '#333333'"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -221,10 +220,9 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+
 # Fibonacci
-default_orientation vertical
-for_window [class=".*"] split toggle #toggles split at each new window
-bindsym $mod+Shift+q split toggle kill
+bindsym $mod+Shift+q kill
 
 # Window settings
 new_window pixel 0
@@ -252,7 +250,7 @@ bindsym $mod+g exec ~/.dmenu-i3gaps.sh
 bindsym $mod+r mode "resize"
 
 # Lock screen on mod+Shift+O
-bindsym $mod+Shift+o exec --no-startup-id i3lock -i ~/Pictures/wallpapers/hedgehog.png
+bindsym $mod+Shift+o exec --no-startup-id killall -SIGUSR1 dunst && i3lock -i ~/Pictures/wallpapers/hedgehog.png && killall -SIGUSR2 dunst
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -327,7 +325,7 @@ exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 
 # Run udiskie in background to automount drives as & when they're plugged in
-exec --no-startup-id udiskie -s
+exec --no-startup-id udiskie -T
 
 # Run autorandr to automatically detect additional displays
 exec --no-startup-id autorandr
