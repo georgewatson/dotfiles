@@ -10,7 +10,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir virtualenv vcs dir_writable newline vi_mode)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir virtualenv vcs dir_writable newline prompt_char)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=
 POWERLEVEL9K_STATUS_VERBOSE=true
@@ -85,6 +85,21 @@ if [ $month -eq 12 ]
 then
     POWERLEVEL9K_HOME_ICON="🎄"
 fi
+
+################################[ prompt_char: prompt symbol ]##################
+# Blue prompt in insert mode
+typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="blue"
+# Grey prompt in normal mode
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_FOREGROUND="gray"
+# Red prompt on error
+typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="red"
+# Prompt points right in insert mode
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
+# Prompt points left in normal mode
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION=''
+# Enable changing prompt
+typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
+typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
