@@ -5,31 +5,28 @@ export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir virtualenv vcs dir_writable)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status command_execution_time background_jobs time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir virtualenv vcs dir_writable newline vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=
 POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_OK=false
 #POWERLEVEL9K_SSH_ICON="ssh"
 POWERLEVEL9K_SSH_ICON="\uf0c1"
 #POWERLEVEL9K_CARRIAGE_RETURN_ICON="↵"
-POWERLEVEL9K_CARRIAGE_RETURN_ICON=" "
-POWERLEVEL9K_EXECUTION_TIME_ICON=" "
+POWERLEVEL9K_CARRIAGE_RETURN_ICON=""
+POWERLEVEL9K_EXECUTION_TIME_ICON=""
 #POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
-POWERLEVEL9K_VI_INSERT_MODE_STRING="INS"
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="NOR"
+POWERLEVEL9K_VI_INSERT_MODE_STRING=""
+POWERLEVEL9K_VI_COMMAND_MODE_STRING=""
 POWERLEVEL9K_VCS_GIT_ICON=" "
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uf113 "
 POWERLEVEL9K_SHOW_CHANGESET="true"
-POWERLEVEL9k_BACKGROUND_JOBS_ICON=" "
+POWERLEVEL9k_BACKGROUND_JOBS_ICON=""
 POWERLEVEL9K_VIRTUALENV_ICON=" "
 POWERLEVEL9K_HOME_ICON=' '
 POWERLEVEL9K_HOME_SUB_ICON=' '
@@ -38,18 +35,19 @@ POWERLEVEL9K_ETC_ICON=' '
 POWERLEVEL9K_SSH_ICON=' '
 POWERLEVEL9K_VCS_GIT_HOOKS=(git-untracked git-aheadbehind git-stash git-remotebranch vcs-detect-changes git-tagname)
 
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%} "
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%F{white}"
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%F{default} "
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\uf460%F{default} "
 
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="clear"
 POWERLEVEL9K_SSH_BACKGROUND="clear"
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
@@ -81,7 +79,12 @@ POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND="clear"
 POWERLEVEL9K_VIRTUALENV_BACKGROUND="clear"
 POWERLEVEL9K_VIRTUALENV_FOREGROUND="green"
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# Fun icons in December
+month=$(date '+%m')
+if [ $month -eq 12 ]
+then
+    POWERLEVEL9K_HOME_ICON="🎄"
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -127,7 +130,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(history git git-flow taskwarrior rsync zsh-syntax-highlighting vi-mode extract)
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -242,7 +244,7 @@ setopt no_share_history
 #zle -N zle-line-finish
 
 # Custom continuation prompt
-export PS2="%F{blue}        %F{normal}"
+export PS2="%F{blue}   %F{normal}"
 
 # Shorter aliases of already-aliased rsync-copy and rsync-move
 # Should work as drop-in replacements for cp and mv
@@ -308,3 +310,5 @@ PERL5LIB="/home/george/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LI
 PERL_LOCAL_LIB_ROOT="/home/george/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/george/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/george/perl5"; export PERL_MM_OPT;
+
+source $ZSH/oh-my-zsh.sh
