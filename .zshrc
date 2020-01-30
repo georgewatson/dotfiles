@@ -88,11 +88,11 @@ fi
 
 ################################[ prompt_char: prompt symbol ]##################
 # Blue prompt in insert mode
-typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="blue"
+typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VIVIS,VIOWR}_FOREGROUND="blue"
+# Red prompt on error
+typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VIVIS,VIOWR}_FOREGROUND="red"
 # Grey prompt in normal mode
 typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_FOREGROUND="gray"
-# Red prompt on error
-typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND="red"
 # Prompt points right in insert mode
 typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
 # Prompt points left in normal mode
