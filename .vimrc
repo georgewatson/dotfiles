@@ -100,6 +100,17 @@ Plugin 'whiteinge/diffconflicts'
 " Hoogle integration
 Plugin 'Twinside/vim-hoogle'
 
+" LSP stuff
+" https://maciejzj.xyz/vim-lsp-and-autocompletion.html
+" Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/asyncomplete.vim'
+" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'mattn/vim-lsp-settings'
+
+" View & search LSP symbols/tags
+Plugin 'liuchengxu/vista.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -120,6 +131,12 @@ set incsearch     " do incremental searching
 " Always open new splits below and to the right
 set splitbelow
 set splitright
+
+" Navigate splits with alt+[hjkl]
+nmap <silent> k :wincmd k<CR>
+nmap <silent> j :wincmd j<CR>
+nmap <silent> h :wincmd h<CR>
+nmap <silent> l :wincmd l<CR>
 
 syntax on
 
@@ -273,6 +290,13 @@ highlight SpellBad cterm=underline term=underline gui=undercurl
 highlight Visual cterm=reverse ctermfg=none ctermbg=none
 " Nicer colour for titles
 highlight! link Title Question
+" Line numbers & comments in grey
+highlight LineNr ctermfg=darkgrey
+highlight Comment ctermfg=darkgrey
+
+" Make splits less ugly
+set fillchars+=vert:│
+highlight VertSplit ctermfg=darkgrey ctermbg=none
 
 nnoremap <Leader>o :edit<space>
 nnoremap <Leader>e :edit<space>
@@ -388,6 +412,29 @@ set rulerformat=%=%#Type#%m\ %L\ \L\,\ \C\ %c
 set shortmess=aWIF
 " And go tabline-free if <2 buffers are open
 let g:buftabline_show=1
+
+" Remove annoying LaTeX-Suite placeholders
+let g:Imap_UsePlaceHolders = 0
+
+" Navigate LSP autocompletion results with tab
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+" Use LSP for Vista
+let g:vista_default_executive = 'vim_lsp'
+let g:vista#renderer#icons = {
+\   "module": "§",
+\   "function": "λ",
+\   "variable": "*",
+\   "constant": "π",
+\  }
+let g:vista_icon_indent = [" ", " "]
+let g:vista_stay_on_open = 0
+
+" Toggle vista with <leader>v
+nnoremap <leader>v :Vista!!<cr>
 
 " For Greek
 set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz,¨:,´\\\;

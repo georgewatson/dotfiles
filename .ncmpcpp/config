@@ -200,7 +200,7 @@ current_item_prefix = $(yellow)$r
 #
 #current_item_inactive_column_suffix = $/r$(end)
 #
-now_playing_prefix = $b
+now_playing_prefix = $b
 #
 #now_playing_suffix = $/b
 #

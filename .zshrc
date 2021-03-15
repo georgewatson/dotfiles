@@ -282,7 +282,7 @@ alias qjobs="watch 'qstat | cut -c-$COLUMNS'"
 
 show()
 {
-    pygmentize $1 2>/dev/null || cat $1
+    pygmentize -O style=native $1 2>/dev/null || cat $1
 }
 # Copy tab completion from cat
 compdef show=cat
@@ -293,8 +293,10 @@ alias irssi='TERM=screen-256color irssi'
 alias gcasm='git commit -a -S -m'
 
 # Make connecting to the university VPN easier
-alias yorkvpn='/usr/local/pulse/pulsesvc -h webvpn.york.ac.uk -u gw639 -r york_users_realm'
-alias vpnstatus='/usr/local/pulse/pulsesvc -S'
+# alias yorkvpn='/usr/local/pulse/pulsesvc -h webvpn.york.ac.uk -u gw639 -r york_users_realm'
+alias yorkvpn='sudo openconnect --protocol=nc --no-dtls webvpn.york.ac.uk -u gw639'
+alias splitvpn='sudo openconnect --protocol=nc --no-dtls webvpn.york.ac.uk/split -u gw639'
+# alias vpnstatus='/usr/local/pulse/pulsesvc -S'
 
 # thefuck
 eval $(thefuck --alias)
@@ -304,19 +306,25 @@ export RTV_BROWSER='qutebrowser'
 
 alias dropdown='nohup konsole -name __dropdown &'
 alias feh='feh --scale-down --auto-zoom --image-bg "#333333" --conversion-timeout 1'
-alias neofetch='neofetch --ascii ~/gw.ascii --ascii_colors 1 2 3 4 5 6'
+alias neofetch='neofetch --ascii_colors 6 7 1 2 3 4'
 
 # Open .md file in vim & .pdf in zathura simultaneously
 note () {
     echo "${1:r}.pdf"
     zathura "${1:r}.pdf" &
-    vim "${1:r}.md"
+    if [ -f "$1" ]; then
+        vim "$1"
+    else
+        vim "${1:r}.md"
+    fi
 }
 
 # "Do not disturb"
 dnd () {
     nohup ~/dotfiles/do_not_disturb.sh $1 &
 }
+
+alias todo='while true; do clear && task && sleep 10; done'
 
 source ~/.zshrc.local
 
@@ -325,5 +333,7 @@ PERL5LIB="/home/george/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LI
 PERL_LOCAL_LIB_ROOT="/home/george/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/george/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/george/perl5"; export PERL_MM_OPT;
+
+export PATH=$HOME/go/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh

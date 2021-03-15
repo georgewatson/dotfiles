@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FuraCode Nerd Font Regular 11
+font pango:Caskaydia Cove Nerd Font Regular 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,7 +36,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'FuraCode Nerd Font:regular:pixelsize=17' -nb '#333333' -nf '#cccccc' -sb '#30b7f3' -sf '#333333'"
+bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Caskaydia Cove Nerd Font:regular:pixelsize=17' -nb '#333333' -nf '#cccccc' -sb '#30b7f3' -sf '#333333'"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -100,16 +100,16 @@ bindsym $mod+Shift+Tab workspace prev
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9 "
-set $ws10 "10 "
+set $ws9 "9"
+set $ws10 "10"
 set $wsf1 "F1"
 set $wsf2 "F2"
 set $wsf3 "F3"
@@ -244,13 +244,14 @@ client.background #333333
 gaps inner 20
 gaps horizontal 5
 gaps bottom 5
+gaps top -10
 
 bindsym $mod+g exec ~/.dmenu-i3gaps.sh
 
 bindsym $mod+r mode "resize"
 
 # Lock screen on mod+Shift+O
-bindsym $mod+Shift+o exec --no-startup-id killall -SIGUSR1 dunst && i3lock -i ~/Pictures/wallpapers/hedgehog.png && killall -SIGUSR2 dunst
+bindsym $mod+Shift+o exec --no-startup-id "killall -SIGUSR1 dunst ; i3lock -i ~/Pictures/wallpapers/space.jpg ; killall -SIGUSR2 dunst"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -271,8 +272,6 @@ bar {
 
 # If I'm recording my screen, I probably don't want the tiling disrupted
 for_window [class="Kazam"] floating enable
-# Gnuplot should always open a popup
-for_window [class="gnuplot"] floating enable
 
 # Set touchpad properties (speed, natural scrolling)
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
@@ -337,7 +336,7 @@ exec --no-startup-id redshift -l 53.95763:-1.08271
 
 # Set wallpaper
 # exec --no-startup-id feh --randomize --bg-scale ~/Pictures/wallpapers/*
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/hedgehog.png
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/space.jpg
 
 # Programs to run on startup
 exec i3-msg "workspace $ws1"; exec qutebrowser

@@ -1,5 +1,5 @@
 [global]
-    font = FuraCode Nerd Font Regular 11
+    font = CaskaydiaCove Nerd Font 11
 
     # allow a small subset of html markup:
     # <b>bold</b>

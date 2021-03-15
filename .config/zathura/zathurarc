@@ -1,4 +1,4 @@
-set font                        "FuraCode Nerd Font 11"
+set font                        "Caskaydia Cove Nerd Font 11"
 set default-bg                  "#333333"
 set default-fg                  "#cccccc"
 
@@ -42,3 +42,5 @@ set selection-clipboard clipboard
 set guioptions                  ""
 
 set adjust-open                 "width"
+
+map <C-s> toggle_statusbar
