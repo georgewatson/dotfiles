@@ -292,7 +292,7 @@ highlight Visual cterm=reverse ctermfg=none ctermbg=none
 highlight! link Title Question
 " Line numbers & comments in grey
 highlight LineNr ctermfg=darkgrey
-highlight Comment ctermfg=darkgrey
+highlight Comment cterm=bold ctermfg=darkgrey
 
 " Make splits less ugly
 set fillchars+=vert:│

@@ -121,3 +121,4 @@ hi! link Conceal Operator
 
 setlocal conceallevel=1
 
+syn region Comment start=/"""/ end=/"""/

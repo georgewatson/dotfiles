@@ -1,6 +1,6 @@
 #! /bin/bash
 
-res=$(dmenu -fn 'Caskaydia Cove Nerd Font:regular:pixelsize=17' -nb '#333333' -nf '#cccccc' -sb '#30b7f3' -sf '#333333' < ~/.dmenu-i3gaps)
+res=$(dmenu -fn 'Rec Mono Duotone:regular:pixelsize=17' -nb '#333333' -nf '#cccccc' -sb '#30b7f3' -sf '#333333' < ~/.dmenu-i3gaps)
 
 if [ $res = "default" ]; then
     i3-msg gaps inner current set 20

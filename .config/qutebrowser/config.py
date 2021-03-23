@@ -261,7 +261,7 @@ c.content.ssl_strict = 'ask'
 
 # List of user stylesheet filenames to use.
 # Type: List of File, or File
-c.content.user_stylesheets = 'ligatures.css'
+c.content.user_stylesheets = []
 
 # Enable WebGL.
 # Type: Bool
@@ -903,7 +903,7 @@ c.colors.webpage.prefers_color_scheme_dark = True
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = 'CaskaydiaCove Nerd Font'
+c.fonts.default_family = 'Rec Mono Duotone'
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are
@@ -962,7 +962,7 @@ c.fonts.web.family.standard = '"Arial", "Noto Sans", "Noto Color Emoji", sans-se
 
 # Font family for fixed fonts.
 # Type: FontFamily
-c.fonts.web.family.fixed = '"FuraCode Nerd Font", "Noto Sans Mono", "Noto Color Emoji", default_family'
+c.fonts.web.family.fixed = '"CaskaydiaCove Nerd Font", "FuraCode Nerd Font", "Noto Sans Mono", "Noto Color Emoji", default_family'
 
 # Font family for serif fonts.
 # Type: FontFamily
@@ -1004,12 +1004,12 @@ config.bind('<Space>p', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
 config.bind('<Space>r', 'spawn --userscript readability-js')
 config.bind('<Space>x', 'tab-close')
 config.bind('M', 'quickmark-save')
-config.bind('`', 'enter-mode jump_mark')
-config.bind('e', 'open-editor')
+config.bind('`', 'mode-enter jump_mark')
+config.bind('e', 'edit-text')
 config.bind('gT', 'tab-prev')
 config.bind('gt', 'tab-next')
 config.bind('h', 'back')
 config.bind('l', 'forward')
-config.bind('m', 'enter-mode set_mark')
-config.bind('t', 'set-cmd-text -s :buffer')
+config.bind('m', 'mode-enter set_mark')
+config.bind('t', 'set-cmd-text -s :tab-select')
 config.bind('zp', 'hint links run open -t https://getpocket.com/edit?url={hint-url}')

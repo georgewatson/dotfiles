@@ -8,32 +8,91 @@ export ZSH=~/.oh-my-zsh
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+source ~/.p10k.zsh
+
 #POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir virtualenv vcs dir_writable newline prompt_char)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
+#POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_MODE='default'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir vcs dir_writable newline prompt_char)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
+typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    # =========================[ Line #1 ]=========================
+    status                  # exit code of the last command
+    command_execution_time  # duration of the last command
+    background_jobs         # presence of background jobs
+    direnv                  # direnv status (https://direnv.net/)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    anaconda                # conda environment (https://conda.io/)
+    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    goenv                   # go environment (https://github.com/syndbg/goenv)
+    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    # node_version          # node.js version
+    # go_version            # go version (https://golang.org)
+    # rust_version          # rustc version (https://www.rust-lang.org)
+    # dotnet_version        # .NET version (https://dotnet.microsoft.com)
+    rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
+    rvm                     # ruby version from rvm (https://rvm.io)
+    fvm                     # flutter version management (https://github.com/leoafarias/fvm)
+    luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+    jenv                    # java version from jenv (https://github.com/jenv/jenv)
+    plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
+    kubecontext             # current kubernetes context (https://kubernetes.io/)
+    terraform               # terraform workspace (https://www.terraform.io)
+    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    gcloud                  # google cloud cli acccount and project (https://cloud.google.com/)
+    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    context                 # user@hostname
+    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    ranger                  # ranger shell (https://github.com/ranger/ranger)
+    nnn                     # nnn shell (https://github.com/jarun/nnn)
+    vim_shell               # vim shell indicator (:sh)
+    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
+    # vpn_ip                # virtual private network indicator
+    # ram                   # free RAM
+    # load                  # CPU load
+    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    # time                  # current time
+    # =========================[ Line #2 ]=========================
+    newline
+    # public_ip             # public IP address
+    # proxy                 # system-wide http/https/ftp proxy
+    # battery               # internal battery
+    # example               # example user-defined segment (see prompt_example function below)
+)
+typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx'
+typeset -g POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|pulumi'
+typeset -g POWERLEVEL9K_AZURE_SHOW_ON_COMMAND='az|terraform|pulumi'
+typeset -g POWERLEVEL9K_GCLOUD_SHOW_ON_COMMAND='gcloud|gcs'
+typeset -g POWERLEVEL9K_GOOGLE_APP_CRED_SHOW_ON_COMMAND='terraform|pulumi'
+
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=
 POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_OK=false
 #POWERLEVEL9K_SSH_ICON="ssh"
-POWERLEVEL9K_SSH_ICON="\uf0c1"
 #POWERLEVEL9K_CARRIAGE_RETURN_ICON="↵"
-POWERLEVEL9K_CARRIAGE_RETURN_ICON=""
-POWERLEVEL9K_EXECUTION_TIME_ICON=""
+POWERLEVEL9K_CARRIAGE_RETURN_ICON="!"
+POWERLEVEL9K_EXECUTION_TIME_ICON=""
 #POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
-POWERLEVEL9K_VI_INSERT_MODE_STRING=""
-POWERLEVEL9K_VI_COMMAND_MODE_STRING=""
-POWERLEVEL9K_VCS_GIT_ICON=" "
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uf113 "
+POWERLEVEL9K_VI_INSERT_MODE_STRING=":"
+POWERLEVEL9K_VI_COMMAND_MODE_STRING="#"
+POWERLEVEL9K_VCS_GIT_ICON="[git]"
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON="[gh]"
 POWERLEVEL9K_SHOW_CHANGESET="true"
-POWERLEVEL9k_BACKGROUND_JOBS_ICON=""
-POWERLEVEL9K_VIRTUALENV_ICON=" "
-POWERLEVEL9K_HOME_ICON=' '
-POWERLEVEL9K_HOME_SUB_ICON=' '
-POWERLEVEL9K_FOLDER_ICON=' '
-POWERLEVEL9K_ETC_ICON=' '
-POWERLEVEL9K_SSH_ICON=' '
+POWERLEVEL9k_BACKGROUND_JOBS_ICON="*"
+POWERLEVEL9K_VIRTUALENV_ICON="[py]"
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_ETC_ICON=''
+POWERLEVEL9K_SSH_ICON='[ssh]'
 POWERLEVEL9K_VCS_GIT_HOOKS=(git-untracked git-aheadbehind git-stash git-remotebranch vcs-detect-changes git-tagname)
+
+#POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
@@ -44,10 +103,10 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460 %h%F{default} "
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\uf460%F{default} "
 
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=' '
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=' '
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' '
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=' '
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="clear"
 POWERLEVEL9K_SSH_BACKGROUND="clear"
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
@@ -94,9 +153,9 @@ typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VIVIS,VIOWR}_FOREGROUND="red"
 # Grey prompt in normal mode
 typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_FOREGROUND="gray"
 # Prompt points right in insert mode
-typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=':'
 # Prompt points left in normal mode
-typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION=''
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='#'
 # Enable changing prompt
 typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
 typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
@@ -259,7 +318,7 @@ setopt no_share_history
 #zle -N zle-line-finish
 
 # Custom continuation prompt
-export PS2="%F{blue}   %F{normal}"
+export PS2="%F{blue} ;  %F{normal}"
 
 # Shorter aliases of already-aliased rsync-copy and rsync-move
 # Should work as drop-in replacements for cp and mv

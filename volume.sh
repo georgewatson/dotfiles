@@ -31,11 +31,11 @@ function send_notification {
     # https://en.wikipedia.org/wiki/Box-drawing_character
     bar=$(seq -s "─" $((($volume / 2) + 1)) | sed 's/[0-9]//g')
 
-    bar_after=$(seq -s " " $((51 - ($volume / 2))) | sed 's/[0-9]//g')
+    bar_after=$(seq -s " " $((51 - ($volume / 2))) | sed 's/[0-9]//g')
     # Send the notification
     ~/dotfiles/notify-send.sh/notify-send.sh "Volume" -u normal \
         "$bar$bar_after  $volume%" --replace-file=/tmp/volume_notification \
-        -a '' -t 2000
+        -a '🔊' -t 2000
 }
 
 case $1 in
