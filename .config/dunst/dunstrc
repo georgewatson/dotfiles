@@ -157,18 +157,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    foreground = "#cccccc"
-    background = "#333333"
+    foreground = "#777777"
+    background = "#ffffff"
     timeout = 0
 
 [urgency_normal]
-    foreground = "#30b7f3"
-    background = "#333333"
+    foreground = "#333333"
+    background = "#ffffff"
     timeout = 0
 
 [urgency_critical]
     foreground = "#f33051"
-    background = "#333333"
+    background = "#ffffff"
     timeout = 0
 
 
@@ -269,4 +269,4 @@
     summary = "Connection Established"
     format = "直  <b>%s</b>  %b"
     urgency = normal
-    foreground = "#30b7f3"
+    foreground = "#333333"

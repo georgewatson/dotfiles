@@ -176,7 +176,7 @@ set list listchars=tab:»\ ,trail:·,nbsp:␣,extends:>,precedes:<
 
 " Make it obvious where 80 characters is
 set textwidth=80
-autocmd BufEnter * highlight OverLength ctermfg=darkred ctermbg=black
+autocmd BufEnter * highlight OverLength ctermfg=darkred ctermbg=white
 autocmd BufEnter * match OverLength /\%81v.*/
 
 " Numbers
@@ -259,7 +259,7 @@ let b:ale_linters = {'javascript': ['standard', 'eslint']}
 " I don't actually use Solarized,
 " but the colour scheme works well with my custom palette anyway
 syntax enable
-set background=dark
+set background=light
 let g:solarized_termcolors=16
 let g:solarized_bold=1
 let g:solarized_italic=1
